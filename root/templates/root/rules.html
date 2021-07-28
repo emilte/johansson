@@ -1,0 +1,110 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Regler{% endblock %}
+
+{% block body %}
+<div class="content-section">
+    <h1 class="display-4 primary border-bottom border-white">Samfundets regeler og drift</h1>
+    <div class="card text-white border-dark mb-2">
+        <div class="card-header bg-dark text-white" id="card1h">Hybel-regler</div>
+        <div class="card-body bg-secondary" id="card1b" style="display:none;">
+            <h5 class="card-title">Generelle Hybel regler</h5>
+            <ol class="card-text">
+                <li>Ha alltid med gjengkortet ditt på sideloftet.</li>
+                <li>Ikke ta med alkohol fra en hybel.</li>
+                <li>Ikke ta med alkohol fra offentlige områder til private eller omvendt.</li>
+                <li>Aldri betal med penger på hyblene. Benytt krysselister eller kryssebonger.</li>
+                <li>Ikke sov på hyblene; Enhver plikter å evakuere ved brannalarm.</li>
+                <li>Røyking er kun tillat på enkelte hybler, ikke i fellesarealene eller på toaletter.</li>
+                <li>Ikke gå på taket til Samfundet.</li>
+                <li>Ikke rør sprinkleranlegget.</li>
+                <li>Hybeldrift skal ikke omtales i offentlige fora, dette inkluderer sosiale medier.</li>
+                <li>Oppfør deg fint på hyblene, og vis respekt for Huset, reglene og de som er på jobb. </li>
+            </ol>
+            <h5 class="card-title" id="card1h">Hybel regler under korona</h5>
+            <ol class="card-text" id="card1b">
+                <li>Gjeldende råd fra FHI og Helsenorge skal overholdes ved opphold på hyblene</li>
+                <li>Alle arrangement på hyblene vil foregå bak lukkede dører. Hver gjeng har ansvar for de som oppholder seg på sin hybel. Det vil ikke være mulig å bevege seg mellom hybler</li>
+                <li>Det innføres en kapasitetsbegrensning på hver hybel som gjør det mulig å opprettholde de gjeldende smittevernrådene. Kapasiteten settes i samråd med gjengsjef </li>
+                <li>Gjengene oppfordres til å føre oversikt over hvem som har oppholdt seg på sin hybel</li>
+                <li>Det skal etableres et tydelig skille mellom fest og arbeid på hyblene. En hybel kan ikke brukes som pauselokale ved arbeid i offentlige områder og til fest samtidig </li>
+                <li>Vaskerutiner for hybler og fellesarealer utformes av gjengene i samarbeid med HMS-ansvarlig i Gjengsekretariatet </li>    
+                <li>Unødvendig opphold i hybelgangene skal unngås</li>
+                <li>Det skal være en eller flere ansvarlige og edruelige barvakter tilstede dersom en hybel skal brukes til fest</li>
+                <li>Følgeretten suspenderes inntil videre </li>
+            </ol>
+        </div>
+    </div>
+    <div class="card text-white border-dark mb-2">
+        <div class="card-header bg-dark text-white" id="card2h">Korona-regler</div>
+        <div class="card-body bg-secondary" id="card2b" style="display:none;">
+            <h5 class="card-title">Hva gjør man ved symptomer?</h5>
+            <ul class="card-text">
+                <li>Ikke møt opp på Studentersamfundet eller arbeid dersom du har symptomer på Covid-19</li>
+                <li>Meld fra til gjengsjef, eller til seksjonssjef</li>
+                <li>Begynn smittesporing: alle dine nærkontakter siste 48 timer</li>
+                <li><b>Test deg raskest mulig!</b></li>
+                <li>Sett deg selv i isolasjon til testresultat foreligger og/eller til du har vært symptomfri i ett døgn</li>
+                <li>Varsle resultat av testen til gjengsjef/seksjonsjef med en gang - uansett testresultat</li>
+                <li>Ved positiv test - varsle Daglig leder/FS-leder</li>
+            </ul>
+        </div>
+    </div>
+    <div class="card text-white border-dark mb-2">
+        <div class="card-header bg-dark text-white" id="card3h">Barvaktinnstruks</div>
+        <div class="card-body bg-secondary" id="card3b" style="display:none;">
+            <h5 class="card-title">Oppgaver</h5>
+            <ul class="card-text">
+                <li>Stå bak baren</li> 
+                <li>Ringe <b>vertskapet (99215960)</b> dersom ting sklir ut</li>
+                <li>Vaske NBB etter vakt (innen kl. 18 dagen etter)</li>
+                <li>Evt. pante, tømme søppel og fylle på med glass, shotteglass og servietter</li>
+                <li>Utfør enkel rydding underveis</li>
+                <li>Korona: Passe på at det kun er påmeldte som er på hybelen</li>
+            </ul>
+            <h5 class="card-title">Barvakt Regler</h5>
+            <ul class="card-text">
+                <li>Du kan ta deg et par øl i løpet av vakten, men du må være tilnærmet edru</li>
+                <li><b>Kun barvakter bak bardisken</b></li>
+                <li>Ved lufting skal musikken dempes for å skjerme naboene og hindre klager</li>
+                <li>Toast skal ha én skive ost og én skive skinke (ekstra koster 3 kr per stk)</li>
+            </ul>
+            <h5 class="card-title">Ølbæring og innkjøp</h5>
+            <ul class="card-text">
+                <li>Fredags- og lørdagsvaktene skal samarbeide med ølbæring og innkjøp</li>
+                <li>Hva, hvor og når blir planlagt sammen med barsjef tidlig samme uke</li>
+                <li>Innkjøp gjøres med barkortet, som blir utlevert av barsjef</li>
+                <li>Kjøp alltid litersflasker sprit hvis tilgjengelig</li>
+                <li>Øl hentes i kaka mellom kl. 18 og 20 på torsdag og bæres opp på hybelen</li>
+                <li>Fyll på øl i kjøleskapet og sett resten på gulvet</li>
+            </ul>
+            <h5 class="card-title">Kryssing og plinging</h5>
+            <ul class="card-text">
+                <li>Ikke åpne ølen/lag drinken før enheten er krysset</li>
+                <li>Folk som er svarte i krysselista får IKKE krysse eller plinge</li>
+                <li>Maksgrense per pling er 1 brett øl (24 enheter), og vi gir kun ut Tuborg</li>
+                <li>Dersom det er noe ved listene som ikke stemmer, kontakt barsjef</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $("#card1h").click(function(){
+            $("#card1b").toggle();
+        });
+        $("#card2h").click(function(){
+            $("#card2b").toggle();
+        });
+        $("#card3h").click(function(){
+            $("#card3b").toggle();
+        });
+    })
+
+</script>
+{% endblock scripts %}

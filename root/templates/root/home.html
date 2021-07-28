@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load main_tags %}
+{% load post_tags %}
+{% load event_tags %}
+{% load gallery_tags %}
+{% block title %}Velkommen{% endblock %}
+{% block head %}
+
+    <style>
+    </style>
+{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-md-9">
+        <img class="img-fluid mb-2" src='{% static "main/img/mg-title.png" %}'/>
+        <div class="container-fluid mb-3">
+            <div class="d-flex justify-content-center p-2 border-top border-bottom border-pink">
+                {% for department in departments %}
+                    {% display_urlpill_component request perms department small=False%}
+                {% endfor %}
+            </div>
+        </div>
+        {% display_recent_posts request perms %}
+    </div>
+    <div class="col-md-3">
+        <div class="mt-3">
+            {% display_upcomming_events request perms events %}
+        </div>
+        {% if random_quote %}
+            <div class="mt-3">
+                <h4 class="h4 m-0 p-2 rounded bg-danger">Random sitat:</h4>
+                {% display_quote_component request perms random_quote %}
+            </div>
+        {% endif %}
+        {% if random_meme %}
+            <div class="mt-3">
+                <h4 class="h4 m-0 p-2 rounded bg-danger">Random meme:</h4>
+                {% display_upload_component request perms random_meme %}
+            </div>
+        {% endif %}
+        {% if random_non_meme %}
+            <div class="mt-3">
+                <h4 class="h4 m-0 p-2 rounded bg-danger">Random opplasting:</h4>
+                {% display_upload_component request perms random_non_meme %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock body %}
+
+

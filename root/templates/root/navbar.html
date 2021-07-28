@@ -1,0 +1,110 @@
+{% load static %}
+{% load main_tags %}
+<link rel="stylesheet" type="text/css" href="{% static 'main/css/navbar.css' %}"/>
+
+<!-- Navbar -->
+<nav id="nav" class="navbar navbar-expand-md bg-black fixed-top m-0 p-1">
+
+    <a class="navbar-brand ml-2" href="{% url 'home' %}">
+        <img width="50" src='{% static "main/img/mg-150x150.png" %}' alt="">
+        <span class="d-none d-sm-none d-md-inline">
+            Reke-nett
+        </span>
+    </a>
+
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="text-pink"><i class="lni lni-list"></i></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse mr-auto" id="navbar">
+        <ul class="navbar-nav mr-auto ml-3">
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="departments-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Seksjoner/Grupper
+                </a>
+                <div class="dropdown-menu text-pink bg-dark-blur" aria-labelledby="distance-dropdown" style="">
+                    {% get_departments as departments %}
+                    {% for department in departments %}
+                        <a class="dropdown-item text-pink" href="{% url 'departments:dep_home' department.get_url %}">{{department}}</a>
+                    {% endfor %}
+                    <a class="dropdown-item text-pink" href="#">Diverse</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="distance-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Innlegg
+                </a>
+                <div class="dropdown-menu bg-dark-blur" aria-labelledby="distance-dropdown" style="">
+                    <a class="dropdown-item text-pink" href="{% url 'posts:all_posts' %}">Alle Innlegg</a>
+                    <a class="dropdown-item text-pink" href="{% url 'posts:create_post' %}">Opprett et innlegg</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="events-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Events
+                </a>
+                <div class="dropdown-menu bg-dark-blur" aria-labelledby="events-dropdown" style="">
+                    <a class="dropdown-item text-pink" href="{% url 'events:all_events' %}">Alle events</a>
+                    <a class="dropdown-item text-pink" href="{% url 'events:add_event' %}">Opprett events</a>
+                    <a class="dropdown-item text-pink" href="{% url 'challenges:base' %}">Utfordringer</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="wiki-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Wiki
+                </a>
+                <div class="dropdown-menu bg-dark-blur" aria-labelledby="wiki-dropdown" style="">
+                    <a class="dropdown-item text-pink" href="{% url 'wiki:dashboard' %}">Wiki</a>
+                    <a class="dropdown-item text-pink" href="{% url 'internprice:active_internprices' %}">Internpriser</a>
+                    <a class="dropdown-item text-pink" href="{% url 'accounts:user_search' %}">Medlemsdatabase</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="gallery-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Galleri
+                </a>
+                <div class="dropdown-menu bg-dark-blur" aria-labelledby="gallery-dropdown" style="">
+                    <a class="dropdown-item text-pink" href="{% url 'gallery:all_quotations' %}">Sitater</a>
+                    <a class="dropdown-item text-pink" href="{% url 'gallery:all_uploads' %}">Bildegalleri</a>
+                    <a class="dropdown-item text-pink" href="{% url 'meme_view' %}">Memes</a>
+                </div>
+            </li>
+
+        </ul>
+        <ul class="navbar-nav ml-auto mr-4">
+            {% if user.is_authenticated %}
+                {% if request.user.is_staff or request.user.is_superuser %}
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href="{% url 'admin:index' %}"> <i class="lni-shield text-primary"></i> Admin </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'accounts:profile' user.id %}">
+                        <i class="lni-user"></i>
+                        {{ user }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:logout' %}">
+                        <i class=""></i>
+                        Logg ut
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:login' %}">
+                        <i class=""></i>
+                        Logg inn
+                    </a>
+                </li>
+            {% endif %}
+
+
+        </ul>
+    </div>
+</nav> <!-- End: navbar -->
