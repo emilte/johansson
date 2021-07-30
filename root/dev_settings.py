@@ -3,7 +3,7 @@ from root.base_settings import * # star is essensial to set variables
 ENV = DEV # Can be used in custom templatetags
 print(f"Environment: {ENV}")
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 
 DEBUG = True
 

@@ -34,10 +34,9 @@ AUTH_USER_MODEL = "accounts.User"
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['nbb.samfundet.no']
-
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticroot'
+print(STATIC_ROOT)
 
 # Security
 SECURE_SSL_REDIRECT = True
@@ -65,8 +64,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # main apps
-    'accounts',
     'root',
+    'accounts',
+    'flowers',
+    
+    # installed apps
+    'compressor', # django-libsass
 ]
 
 
@@ -98,6 +101,18 @@ TEMPLATES = [
         },
     },
 ]
+
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+    'compressor.finders.CompressorFinder', # django-libsass
+]
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'), # django-libsass
+)
 
 WSGI_APPLICATION = 'root.wsgi.application'
 
@@ -134,10 +149,16 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-AUTHENTICATION_BACKENDS = {
-    'accounts.authentication.EmailOrUsernameModelBackend'
-}
+# AUTHENTICATION_BACKENDS = {
+#     'accounts.authentication.EmailOrUsernameModelBackend',
+# }
 
+try:
+    from env import * # star is necessary
+    
+    print("Loading env.py environment variables...")
+except Exception as e:
+    print("env.py was not imported")
 
 # Quick fix for avoiding concurrency issues related to db access
 # https://docs.djangoproject.com/en/1.10/topics/db/transactions/#django.db.transaction.on_commit

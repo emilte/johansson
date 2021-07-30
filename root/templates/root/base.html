@@ -2,13 +2,13 @@
 <html lang="en" dir="ltr">
 {% load static %}
 {% load compress %}
-{% load main_tags %}
+{% load root_tags %}
 {% get_settings "ENV" as ENV %}
+{% get_settings "DEV" as DEV %}
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 
     <!-- JQuery first (3.5.0 breaks the site), then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
@@ -32,25 +32,25 @@
 
     <!-- Pretty Checkbox -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+    
     <!-- Other stylesheets -->
-    {% compress css  %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'main/scss/base.scss' %}"/>
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'main/scss/mdb_animations.scss' %}"/>
-        {% if ENV == "DEV" %}
-        <link rel="stylesheet" type="text/x-scss" href='{% static "main/scss/dev.scss" %}'>
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'root/scss/base.scss' %}"/>
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'root/scss/mdb_animations.scss' %}"/>
+        {% if ENV == DEV %}
+        <link rel="stylesheet" type="text/x-scss" href='{% static "root/scss/dev.scss" %}'>
         {% endif %}
     {% endcompress %}
-
-    <link rel="shortcut icon" type="image/png" href="{% static 'main/img/favicon-32x32.png' %}"/>
-
+    
+    {# <link rel="shortcut icon" type="image/png" href="{% static 'root/img/favicon-32x32.png' %}"/> #}
 
     <!-- select2 (requires: .js file) -->
     <!-- Plugin for several fields in forms -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    {# <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> #}
     
     <!-- TinyMCE (requires: .js file and init-script) -->
     <!-- Plugin for complex input-textfields -->
-    <script src="https://cdn.tiny.cloud/1/5fxgnl3dek8av5x5in4ke8fhqsup13fux7rshr2l91r8lgjw/tinymce/5/tinymce.min.js"></script>
+    {# <script src="https://cdn.tiny.cloud/1/5fxgnl3dek8av5x5in4ke8fhqsup13fux7rshr2l91r8lgjw/tinymce/5/tinymce.min.js"></script> #}
 
 
     <!-- flatpickr (requires .js file and init-script) -->
@@ -64,7 +64,6 @@
     <!-- Title -->
     <title>{% block title %}Base{% endblock %}</title>
 
-
     {% block head %}
         <!-- head access for extended templates -->
     {% endblock %}
@@ -73,11 +72,10 @@
 <body>
 
     {% block navbar %}
-        {% include "main/navbar.html" %}
+        {# {% include "root/navbar.html" %} #}
     {% endblock %}
 
-
-    <div id="content-wrapper" class="container-fluid p-1">
+    <div id="body-outer" class="container-fluid p-1">
 
         <!-- Django messages -->
         <!-- https://docs.djangoproject.com/en/3.1/ref/contrib/messages/ -->
@@ -132,11 +130,10 @@
         <canvas class="position-absolute w-100"></canvas>
         <div class="position-absolute w-100">
             {% block footer %}
-                {% include "main/footer.html" %}
+                {# {% include "root/footer.html" %} #}
             {% endblock %}
         </div>
     </div>
-
 
 
     <!-- Begin: scripts -->
@@ -158,20 +155,16 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     
     <!-- constellation effect for footer -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.js" integrity="sha256-U+vPaw6wGRNjtBRznIBWHgpzNvNI8pRs8fQC313cxfs=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{% static "main/js/constellation.js" %}"></script>
+    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.js" integrity="sha256-U+vPaw6wGRNjtBRznIBWHgpzNvNI8pRs8fQC313cxfs=" crossorigin="anonymous"></script> #}
+    {# <script type="text/javascript" src="{% static "root/js/constellation.js" %}"></script> #}
 
     <!-- BsMultiselect -->
     <!-- https://www.jqueryscript.net/form/Bootstrap-4-Multi-Select-BsMultiSelect.html -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js" integrity="sha256-gh5oDg46rxRDr9QF4nehk1UNULQ05EhbM9wOerElwRc=" crossorigin="anonymous"></script>
+    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js" integrity="sha256-gh5oDg46rxRDr9QF4nehk1UNULQ05EhbM9wOerElwRc=" crossorigin="anonymous"></script> #}
     {# <script type="text/javascript" src="https://rawgit.com/DashboardCode/BsMultiSelect/master/dist/js/BsMultiSelect.min.js"></script> #}
 
     <!-- Bootstrap Toggle-->
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-
-    <!--Script for reacting to interactables-->
-    <!--Put it here because most of the sites will use reacting-->
-    <script type="text/javascript" src="{% static "posts/js/react.js" %}"></script>
 
     {% block scripts %}
     <!-- Note: scripts access for extended templates -->
@@ -191,12 +184,11 @@
             })
 
             // Multiselect init
-            $(function(){
-                // $("select").bsMultiSelect();
-                $("select.plugin").multiselect();
-                $(".multiselect").addClass("bg-light mt-3")
-            });
-
+            // $(function(){
+            //     $("select").bsMultiSelect();
+            //     $("select.plugin").multiselect();
+            //     $(".multiselect").addClass("bg-light mt-3")
+            // });
 
             // https://www.bootstraptoggle.com/
             $(".bootstrap-toggle-init").each(function(i, element) {
@@ -240,7 +232,7 @@
                     noCalendar: true,
                 }
             }
-            // https://select2.org/configuration/options-api
+
             $(".flatpickr-init").each(function(i, element) {
                 $(element).flatpickr(flatpickrConfigs.default);
             });

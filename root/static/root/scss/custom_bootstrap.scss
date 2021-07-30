@@ -1,0 +1,376 @@
+@use "colors.scss";
+
+$xs: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
+// cursors
+.cursor-pointer {
+    cursor: pointer;
+}
+.cursor-default {
+    cursor: default;
+}
+.cursor-n-resize {
+    cursor: n-resize;
+}
+// End: cursors ----------------------------------------------------------------
+
+// borders
+.border-bottom-double {
+    border-bottom: 6px double !important;
+}
+.border-sm {
+    border-width: 2px !important;
+}
+.border-lg {
+    border-width: 10px !important;
+}
+.border-groove {
+    border-style: groove !important;
+}
+.border-pink {
+    border-color: $pink !important;
+}
+.border-dark {
+    &-40 {
+        border-color: $dark40 !important;
+    }
+    &-35 {
+        border-color: $dark35 !important;
+    }
+    &-30 {
+        border-color: $dark30 !important;
+    }
+    &-25 {
+        border-color: $dark25 !important;
+    }
+    &-20 {
+        border-color: $dark20 !important;
+    }
+    &-15 {
+        border-color: $dark15 !important;
+    }
+    &-10 {
+        border-color: $dark10 !important;
+    }
+    &-05 {
+        border-color: $dark05 !important;
+    }
+    &-00 {
+        border-color: $dark00 !important;
+    }
+}
+// End: borders ----------------------------------------------------------------
+
+// rounded
+.rounded-xl {
+    border-radius: 1rem !important;
+}
+.rounded-bottom-xl {
+    border-bottom-right-radius: 1rem !important;
+    border-bottom-left-radius: 1rem !important;
+}
+// End: rounded ----------------------------------------------------------------
+
+// bg
+.bg-none {
+    background-color: rgba(0,0,0,0) !important;
+}
+.bg-pink {
+    background-color: $pink !important;
+}
+.bg-blur {
+    // background-color: rgba(0,0,0,0) !important;
+    backdrop-filter: blur(9px) !important;
+    -webkit-backdrop-filter: blur(9px) !important;
+}
+.bg-dark-blur {
+    background-color: rgba(0,0,0, 0.9) !important;
+    backdrop-filter: blur(9px) !important;
+    -webkit-backdrop-filter: blur(9px) !important;
+}
+.bg-danger-blur {
+    background-color: rgba(255,0,0, 0.1) !important;
+    backdrop-filter: blur(9px) !important;
+    -webkit-backdrop-filter: blur(9px) !important;
+}
+.bg-primary-blur {
+    background-color: rgba(0,0,255, 0.1)!important;
+    backdrop-filter: blur(9px)!important;
+    -webkit-backdrop-filter: blur(9px)!important;
+}
+.bg-success-blur {
+    background-color: rgba(0,255,0, 0.1)!important;
+    backdrop-filter: blur(9px)!important;
+    -webkit-backdrop-filter: blur(9px)!important;
+}
+.bg-info-blur {
+    background-color: rgba(0,255,255, 0.1)!important;
+    backdrop-filter: blur(9px)!important;
+    -webkit-backdrop-filter: blur(9px)!important;
+}
+.bg-warning-blur {
+    background-color: rgba(255,255,0, 0.1)!important;
+    backdrop-filter: blur(9px)!important;
+    -webkit-backdrop-filter: blur(9px)!important;
+}
+.bg-secondary-blur {
+    background-color: rgba(150,150,150, 0.1)!important;
+    backdrop-filter: blur(9px)!important;
+    -webkit-backdrop-filter: blur(9px)!important;
+}
+.bg-pink-blur {
+    background-color: $pink !important;
+    backdrop-filter: blur(9px) !important;
+    -webkit-backdrop-filter: blur(9px) !important;
+}
+.bg-light-blur {
+    background-color: rgba(255,255,255, 0.7)!important;
+    backdrop-filter: blur(9px)!important;
+    -webkit-backdrop-filter: blur(9px)!important;
+}
+.bg-dark {
+    background-color: $dark !important;
+}
+
+// End: bg ---------------------------------------------------------------------
+
+// text / font
+.text-pink {
+    color: $pink !important;
+}
+.text-shadow {
+    text-shadow: 1px 1px #000000;
+}
+.text-underline {
+    text-decoration: underline;
+}
+.text-grey {
+    color: $grey-light !important;
+}
+.font-bold {
+    font-weight: bold;
+}
+// End: text / font ------------------------------------------------------------
+
+// btn
+.btn-pink {
+    background-color: $pink !important;
+    color:white !important;
+    &:hover {
+        background-color: $pink-light !important;
+        color: black !important;
+    }
+    &:active {
+        background-color: $pink-dark !important;
+    }
+    &:focus {
+        background-color: $pink-dark !important;
+    }
+    &.active {
+         background-color: $pink-dark !important;
+    }
+}
+.sticky-top {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50px !important;
+    z-index: 1020;
+}
+
+.btn-dark-05 {
+    background-color: $dark !important;
+    color:white !important;
+    &:hover {
+        background-color: $dark05 !important;
+        color: $grey-light !important;
+    }
+    &:active {
+        background-color: $dark05 !important;
+    }
+    &:focus {
+        background-color: $dark05 !important;
+    }
+    &.active {
+         background-color: $dark05 !important;
+    }
+}
+// End: btn --------------------------------------------------------------------
+
+// lists
+.list-style-none {
+    list-style-type: none !important;
+}
+// End: lists ------------------------------------------------------------------
+
+// others
+.zoom {
+    transition: transform .09s;
+    
+    &:hover {
+        transform: scale(1.01); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+    &-shine:hover {
+        filter: brightness(1.3); 
+    }
+}
+
+
+.zoom-light {
+    transition: transform .09s;
+    .zoom-hidden {
+        display: none;
+        z-index: auto;
+    }
+}
+.zoom-light:hover {
+    transform: scale(1.01); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    /* background-color: rgba(255, 255, 255, 0.9); */
+    // filter: brightness(10%);
+    .zoom-hidden {
+        display: block;
+        z-index: inherit;
+    }
+}
+
+.hover {
+    &-red-AA:hover {
+        background-color: $redAA;
+    }
+    &-red-88:hover {
+        background-color: $red88;
+    }
+    &-red-77:hover {
+        background-color: $red77;
+    }
+    &-red-66:hover {
+        background-color: $red66;
+    }
+    &-red-55:hover {
+        background-color: $red55;
+    }
+    &-red-33:hover {
+        background-color: $red33;
+    }
+    
+    &-green-AA:hover {
+        background-color: $greenAA;
+    }
+    &-green-88:hover {
+        background-color: $green88;
+    }
+    &-green-77:hover {
+        background-color: $green77;
+    }
+    &-green-66:hover {
+        background-color: $green66;
+    }
+    &-green-55:hover {
+        background-color: $green55;
+    }
+    &-green-33:hover {
+        background-color: $green33;
+    }
+    
+    &-blue-AA:hover {
+        background-color: $blueAA;
+    }
+    &-blue-CC:hover {
+        background-color: $blueCC;
+    }
+    &-blue-88:hover {
+        background-color: $blue88;
+    }
+    &-blue-77:hover {
+        background-color: $blue77;
+    }
+    &-blue-66:hover {
+        background-color: $blue66;
+    }
+    &-blue-55:hover {
+        background-color: $blue55;
+    }
+    &-blue-33:hover {
+        background-color: $blue33;
+    }
+}
+
+// End: others -----------------------------------------------------------------
+
+// grid
+
+.row, [class^="col"] {
+    margin: 0;
+    padding: 0;
+} 
+
+// End: grid -----------------------------------------------------------------
+.display-5 {
+    font-size: 2.25rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+.display-6 {
+    font-size: 1.6rem;
+    font-weight: 200;
+    line-height: 1;
+}
+
+.top-right {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.rounded-top-left {
+    border-top-left-radius: 6px;
+}
+.bottom-right {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+.top {
+    position: absolute;
+    top: 0px;
+}
+.bottom {
+    position: absolute;
+    bottom: 0px;
+}
+.bottom-half-under {
+    position: absolute;
+    bottom: -16px;
+}
+
+.reverse-image-fluid {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.grid-item-4 { 
+    @media (min-width: $md) {
+        width: 50%;
+    } 
+    @media (min-width: $lg) {
+        width: 33%;
+    } 
+    @media (min-width: $xl) {
+        width: 25%;
+    }
+    @media (max-width: $md) {
+        width: 100%;
+    } 
+}
+
+.grid-item-2 { 
+    @media (min-width: $lg) {
+        width: 50%;
+    } 
+    @media (max-width: $lg) {
+        width: 100%;
+    } 
+}
+

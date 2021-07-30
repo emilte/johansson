@@ -19,7 +19,7 @@ from django.contrib.admin.views.decorators import staff_member_required, user_pa
 
 
 class IndexView(View):
-    template = "flowers/index.html"
+    template = "root/index.html"
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template)

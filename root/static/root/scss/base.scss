@@ -1,0 +1,210 @@
+// imports
+@import "colors.scss";
+@import "custom_bootstrap.scss";
+// End: imports ----------------------------------------------------------------
+
+$font-color: white;
+$body-bg: $dark40;
+
+$scrollbar-bg: $dark05;
+$scrollbar-thumb-bg: $dark05;
+$scrollbar-track-bg: $dark05;
+
+$link-color: blue;
+$link-hover-color: cyan;
+
+
+html {
+    /* Document renders as 100% */
+    box-sizing: border-box;
+    /* height: 50vh !important;  */
+    /* overflow-x: hidden; */
+}
+
+body {
+    background-size: 100% auto;
+    background-position: top left;
+    background-repeat: repeat-y;
+    background-color: $body-bg;
+    /* Needed for natural element flow */
+    position: relative;
+
+    /* Because of navbar (fixed) */
+    // padding-top: 4em !important;
+
+    color: $font-color;
+}
+
+.icon {
+    &-25 {
+        width: 25px;
+        height: 25px;
+    }
+    &-50 {
+        width: 50px;
+        height: 50px;
+    }
+    &-75 {
+        width: 75px;
+        height: 75px;
+    }
+    &-100 {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+
+[required] {
+    /* background-color: rgba(255, 220, 220, 1); */
+    /* background-color: rgba(200, 240, 255, 1); */
+}
+
+span {
+    display: inline;
+}
+
+.select2-container .select2-selection--single {
+    height: calc(1.5em + .75rem + 2px) !important;
+}
+
+.required:after {
+    content:" *";
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 0.4em;
+    height: 0.4em;
+    
+    &-thumb {
+        background-color: $scrollbar-thumb-bg;
+        border-radius: 10px;
+    }
+    
+    &-track-piece {
+        background-color: $scrollbar-track-bg;
+    }
+}
+
+a {
+    color: $link-color;
+    
+    &:hover {
+        color: $link-hover-color;
+        text-decoration: none;
+    }
+}
+
+/* override styles when printing */
+@media print {
+    .no-print {
+        display: none;
+    }
+
+    a {
+        color: black;
+        text-decoration: none !important;
+    }
+
+    .print-style {
+        color: black;
+    }
+}
+
+#breadcrumb {
+    background-color: rgba(25,25,35,0.8);
+}
+
+#body-outer {
+    min-height: 70vh !important;
+    max-width: 90vw;
+}
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    #body-outer {
+        max-width: 100vw;
+    }
+}
+
+.nav-tabs-underline {
+    .nav-item {
+        border-right: $dark00 1px solid;
+    }
+    .nav-link{
+        color: $muted !important;
+        &:focus, &:hover {
+            color: $pink-light !important;
+            margin-bottom: -2px;
+            border-bottom: $pink-light 2px solid !important;
+        }
+        &.active {
+           color: $pink !important;
+           margin-bottom: -2px;
+           border-bottom: $pink 2px solid !important;
+        }
+    }
+}
+.btn-underline-pink {
+    color: $grey-light !important;
+    border-bottom: 1px solid $grey-light !important;
+    &:hover {
+        border-color: $pink-light !important;
+        color: $pink-light !important;
+    }
+    &:active, &.active, &:focus {
+        border-color: $pink !important;
+        color: $pink !important;
+    }
+}
+
+// CSS for select2, needed to change color
+.select2-results {
+    background-color:white !important;
+    color: black;
+ }
+.select2-selection__choice {
+    color: $dark20 !important;
+}
+
+.masonry-grid { /* Masonry container */
+    column-count: 4;
+    column-gap: 0.75em;
+}
+  
+.masonry-grid-2 { /* Masonry container */
+    column-count: 2;
+    column-gap: 0.75em;
+}
+.masonry-grid-item { /* Masonry bricks or child elements */
+    display: inline-block;
+    margin: 0 0 0.75em;
+    width: 100%;
+}
+  
+.cover-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.event-calendar-sm {
+    @media (max-width: 991.98px) {
+        visibility: visible;
+    } 
+    @media (min-width: 991.98px) {
+        visibility: hidden;
+        height: 0;
+        width: 0;
+    } 
+}
+.event-calendar-lg {
+    @media (max-width: 991.98px) {
+        visibility: hidden;
+        height: 0;
+        width: 0;
+    } 
+    @media (min-width: 991.98px) {
+        visibility: visible;
+    } 
+}
