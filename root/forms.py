@@ -8,29 +8,23 @@ from django.contrib.auth import get_user_model; User = get_user_model()
 from django.contrib.admin.widgets import FilteredSelectMultiple
 
 from root import base_classes as base_classes
-from flowers import models as flower_models
+from root import models as root_models
 
 # End: imports -----------------------------------------------------------------
 
 
-class FlowerForm(base_classes.CustomModelForm):
+class TagForm(base_classes.CustomModelForm):
 
     required_css_class = 'required font-bold'
     field_classes = 'form-control bg-dark-10 text-light border-dark'
 
     class Meta:
-        model = flower_models.Flower
+        model = root_models.Tag
         fields = [
             'name',
-            'name_latin',
-            'longevity',
-            'longevity_unit',
-            'water_freq',
-            'water_freq_unit',
-            'water_amount',
-            'water_amount_unit',
-            'image_url',
-            'tags',
+            'bg',
+            'font',
+            'group',
         ]
 
         # https://www.jqueryscript.net/form/Bootstrap-4-Multi-Select-BsMultiSelect.html
@@ -42,11 +36,6 @@ class FlowerForm(base_classes.CustomModelForm):
             
         # self.fields['file'].widget.attrs.update({'onchange': 'readURL(this);'})
         
-        self.fields['tags'].widget.attrs.update({
-            'class':'form-control select2-init', # form-control lets select2 calculate correct width
-            'data-selectionCssClass': 'bg-dark-10 text-light border-dark',
-            'data-placeholder': 'Søk etter tags...',
-        })
         # self.fields['tagged_users'].widget.attrs.update({
         #     'class':'form-control select2-init', 
         #     'data-selectionCssClass': 'bg-dark-10 text-light border-dark',

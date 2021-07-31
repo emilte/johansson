@@ -15,45 +15,45 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.admin.views.decorators import staff_member_required, user_passes_test
 
-from flowers import forms as flower_forms
-from flowers import models as flower_models
+from library import forms as library_forms
+from library import models as library_models
 # End: imports -----------------------------------------------------------------
 
 
 class IndexView(View):
-    template = "flowers/index.html"
+    template = "library/index.html"
 
     def get(self, request, *args, **kwargs):
-        flowers = flower_models.Flower.objects.all()
-        return render(request, self.template, {'flowers': flowers})
+        library = library_models.Book.objects.all()
+        return render(request, self.template, {'library': library})
     
 
-perms_flower_form = [
+perms_library_form = [
     # login_required,
 ]
-@method_decorator(perms_flower_form, name='dispatch')
-class FlowerFormView(View):
-    template = "flowers/flower_form.html"
-    form_class = flower_forms.FlowerForm
+@method_decorator(perms_library_form, name='dispatch')
+class BookFormView(View):
+    template = "library/book_form.html"
+    form_class = library_forms.BookForm
 
-    def get(self, request, flower_id=None):
-        flower = None
-        if flower_id:
-            flower = get_object_or_404(flower_models.Flower, id=flower_id)
+    def get(self, request, book_id=None):
+        library = None
+        if book_id:
+            library = get_object_or_404(library_models.Book, id=book_id)
             
-        form = self.form_class(instance=flower)
+        form = self.form_class(instance=library)
         return render(request, self.template, {'form': form})
 
-    def post(self, request, flower_id=None):
-        flower = None
-        if flower_id:
-            flower = get_object_or_404(flower_models.Flower, id=flower_id)
+    def post(self, request, book_id=None):
+        library = None
+        if book_id:
+            library = get_object_or_404(library_models.Book, id=book_id)
             
-        form = self.form_class(request.POST, request.FILES, instance=flower)
+        form = self.form_class(request.POST, request.FILES, instance=library)
         if form.is_valid():
-            flower = form.save(user=request.user or None) 
+            library = form.save(user=request.user or None) 
             messages.success(request, "Blomst endret")
-            return redirect('flowers:index')
+            return redirect('library:index')
         return render(request, self.template, {'form': form})
 
 

@@ -3,11 +3,11 @@
 @import "custom_bootstrap.scss";
 // End: imports ----------------------------------------------------------------
 
-$font-color: white;
-$body-bg: $dark40;
+$font-color: #CCC;
+$body-bg: rgb(100,0,100);
 
-$scrollbar-bg: $dark05;
-$scrollbar-thumb-bg: $dark05;
+$scrollbar-bg: black;
+$scrollbar-thumb-bg: $dark50;
 $scrollbar-track-bg: $dark05;
 
 $link-color: blue;
@@ -18,7 +18,8 @@ html {
     /* Document renders as 100% */
     box-sizing: border-box;
     /* height: 50vh !important;  */
-    /* overflow-x: hidden; */
+    overflow-x: hidden;
+    height: 100%;
 }
 
 body {
@@ -28,6 +29,7 @@ body {
     background-color: $body-bg;
     /* Needed for natural element flow */
     position: relative;
+    height: 100%;
 
     /* Because of navbar (fixed) */
     // padding-top: 4em !important;
@@ -54,7 +56,6 @@ body {
     }
 }
 
-
 [required] {
     /* background-color: rgba(255, 220, 220, 1); */
     /* background-color: rgba(200, 240, 255, 1); */
@@ -74,8 +75,8 @@ span {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-    width: 0.4em;
-    height: 0.4em;
+    width: 0.3em;
+    height: 0.3em;
     
     &-thumb {
         background-color: $scrollbar-thumb-bg;
@@ -117,8 +118,8 @@ a {
 }
 
 #body-outer {
-    min-height: 70vh !important;
-    max-width: 90vw;
+    // min-height: 70vh !important;
+    // max-width: 90vw;
 }
 /* // Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) {

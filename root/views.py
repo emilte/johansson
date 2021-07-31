@@ -15,6 +15,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.admin.views.decorators import staff_member_required, user_passes_test
 
+from root import forms as root_forms
 # End: imports -----------------------------------------------------------------
 
 
@@ -23,4 +24,36 @@ class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template)
+
+
+perms_tag_form = [
+    login_required,
+]
+@method_decorator(perms_tag_form, name='dispatch')
+class TagFormView(View):
+    template = "root/tag_form.html"
+    form_class = root_forms.TagForm
+    success_redirect = 'index'
+
+    def get(self, request, tag_id=None):
+        tag = None
+        if tag_id:
+            tag = get_object_or_404(tag_models.Tag, id=tag_id)
+            
+        form = self.form_class(instance=tag)
+        return render(request, self.template, {'form': form})
+
+    def post(self, request, tag_id=None):
+        tag = None
+        if tag_id:
+            tag = get_object_or_404(tag_models.Tag, id=tag_id)
+            
+        form = self.form_class(request.POST, request.FILES, instance=tag)
+        if form.is_valid():
+            tag = form.save(user=request.user) 
+            messages.success(request, "Tag lagret")
+            return redirect(self.success_redirect)
+        return render(request, self.template, {'form': form})
+
+
 

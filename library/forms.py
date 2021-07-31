@@ -13,7 +13,7 @@ from flowers import models as flower_models
 # End: imports -----------------------------------------------------------------
 
 
-class FlowerForm(base_classes.CustomModelForm):
+class BookForm(base_classes.CustomModelForm):
 
     required_css_class = 'required font-bold'
     field_classes = 'form-control bg-dark-10 text-light border-dark'
@@ -21,14 +21,15 @@ class FlowerForm(base_classes.CustomModelForm):
     class Meta:
         model = flower_models.Flower
         fields = [
-            'name',
-            'name_latin',
-            'longevity',
-            'longevity_unit',
-            'water_freq',
-            'water_freq_unit',
-            'water_amount',
-            'water_amount_unit',
+            'title',
+            'author',
+            'isbn',
+            'ranking',
+            'publisher',
+            'release_date',
+            'nationality',
+            'pages',
+            'comment',
             'image_url',
             'tags',
         ]

@@ -7,6 +7,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.contrib import admin
 from django.db.models import FileField, IntegerField
+from django.contrib.auth import models as auth_models
 from django.utils.translation import ugettext_lazy as _
 from django.template.defaultfilters import filesizeformat
 # End: imports -----------------------------------------------------------------
@@ -81,6 +82,8 @@ class CustomBaseModel(models.Model):
     def save(self, *args, **kwargs):
         self.clean()
         user = kwargs.pop('user', None) # Must pop because super().save() doesn't accept user
+        if isinstance(user, auth_models.AnonymousUser): 
+            user = None # creator and last_editor can't be AnonymousUser
         if not self.id:
             self.created = timezone.now()
             if user:
@@ -112,7 +115,7 @@ class ContentTypeRestrictedFileField(FileField):
         self.max_upload_size = max_upload_size
 
     def clean(self, *args, **kwargs):        
-        data = super(ContentTypeRestrictedFileField, self).clean(*args, **kwargs)
+        data = super().clean(*args, **kwargs)
 
         file = data.file
         try:
@@ -143,7 +146,7 @@ class WeekDayField(IntegerField):
         super().__init__(*args, **kwargs)
 
     def clean(self, *args, **kwargs):        
-        data = super(WeekDayField, self).clean(*args, **kwargs)
+        data = super().clean(*args, **kwargs)
         try:
             if data and 0 > data > 6: raise forms.ValidationError(_('Ikke eksisterende '))
         except AttributeError:

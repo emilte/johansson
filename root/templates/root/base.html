@@ -46,7 +46,7 @@
 
     <!-- select2 (requires: .js file) -->
     <!-- Plugin for several fields in forms -->
-    {# <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> #}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     
     <!-- TinyMCE (requires: .js file and init-script) -->
     <!-- Plugin for complex input-textfields -->
@@ -181,6 +181,10 @@
             // Note: Enables user to remove Django messages on top of page
             $('.btn-message-remove').on('click', function() {
                 $(this).parent().remove();
+            })
+            
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
             })
 
             // Multiselect init

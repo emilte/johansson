@@ -1,5 +1,6 @@
 {% extends 'root/base.html' %}
 {% load static %}
+{% load flower_tags %}
 
 {% block title %}Blomster{% endblock %}
 
@@ -9,7 +10,19 @@
 
 {% block head %}
     <style media="screen">
-        
+        #btn-action {
+            position: fixed;
+            right: 1vw;
+            bottom: 2vh;
+            z-index: 100;
+        }
+        .zoom-lg {
+            transition: transform .09s;
+        }
+        .zoom-lg:hover {
+            transform: scale(1.1);
+        }
+    }
     </style>
 {% endblock %}
 
@@ -17,21 +30,86 @@
 
 <div class="body-inner">
 
-    <div class="row">
-        
-        <div class="col-md">
-            <h1 class="h1">Blomster</h1>
-            
+        <div class="row">
+
+            {% for flower in flowers %}
+                <div class="col-sm-6 col-lg-4 d-flex align-items-stretch">
+                    {% display_flower request perms flower %}
+                </div>
+            {% endfor %}
+
         </div>
-        
-        <div class="col-md">
-            
+    
+</div>
+
+
+<!-- Modal -->
+<div class="">
+    <img 
+    id="btn-action"
+    class="bg-dark-20 border border-dark-40 rounded-circle cursor-pointer zoom-lg p-2" 
+    src="{% static "flowers/img/plus.svg" %}" 
+    data-toggle="modal" data-target="#modal-action"
+    alt="">
+    
+    <div class="modal fade text-dark" id="modal-action" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Handlinger</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+                            <a class="btn btn-dark-30 btn-block" tabindex="0" href="{% url 'flowers:add_flower' %}" >
+                                + Legg til blomst
+                            </a>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a class="btn btn-dark-30 btn-block" tabindex="0" href="{% url 'flowers:add_tag' %}" >
+                                + Legg til tag
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                
+            </div>
         </div>
-        
     </div>
+    
     
 </div>
 {% endblock body %}
 
+{% block scripts %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            
+            $('.flower-component').hover(
+                function() {
+                    $(this).find('.btn-change-flower').toggleClass('invisible');
+                }, 
+                function() {
+                    $(this).find('.btn-change-flower').toggleClass('invisible');
+                }
+        )
+        })
+    </script>
+{% endblock %}
 
 

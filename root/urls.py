@@ -7,12 +7,10 @@ from django.conf.urls.static import static
 from root import views as root_views
 # End: imports -----------------------------------------------------------------
 
-app_name = 'root'
-
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
     path('', root_views.IndexView.as_view(), name='index'),
-    path('blomar', include('flowers.urls')),
+    path('blomar/', include('flowers.urls')),
     # path('blomar', include('flowers.urls', namespace='flowers')),
 ]
 

@@ -16,7 +16,10 @@
         }
         
         #app-flowers {
-            background-image: url('{% static "flowers/img/bg-blue-flowers.jpg" %}');
+            background-image: url("{% static "flowers/img/bg-blue-flowers.jpg" %}");
+        }
+        #app-books {
+            background-image: url("{% static "library/img/library.jpg" %}");
         }
         
         .space {
@@ -55,11 +58,11 @@
         </div>
         
         <div class="col col-md m-2">
-            <a class="" href="#">
-                <div id="app-2" class="app app-title-wrapper border border-secondary rounded-xl zoom zoom-shine p-0">
+            <a class="" href="{% url 'library:index' %}">
+                <div id="app-books" class="app app-title-wrapper border border-secondary rounded-xl zoom zoom-shine p-0">
                     <div class="space"></div>
                     <div class="app-title py-3">
-                        <h1 class="h1 text-center">App-2</h1>
+                        <h1 class="h1 text-center">Bokbibliotek</h1>
                     </div>
                 </div>
             </a>

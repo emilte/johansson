@@ -27,6 +27,13 @@ def divide(arg1, arg2):
     except (ValueError, ZeroDivisionError):
         return 0
 
+# use floatformat
+# @register.simple_tag
+# def round_decimal(number, decimals):
+#     if decimals <= 0:
+#         return int(number)
+#     return round(number, decimals)
+
 @register.simple_tag
 def bg_is_dark(color):
     if not color:

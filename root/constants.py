@@ -1,14 +1,23 @@
 
-U_SECONDS, U_MINUTES, U_HOURS, U_DAYS, U_WEEKS, U_MONTHS, U_YEARS = 'seconds', 'minutes', 'hours', 'days', 'weeks', 'months', 'years'
-TIME_UNIT = [
+SECONDS, MINUTES, HOURS, DAYS, WEEKS, MONTHS, YEARS = 'seconds', 'minutes', 'hours', 'days', 'weeks', 'months', 'years'
+TIME_UNITS = [
     (None, ""),
-    (U_SECONDS, "sekunder"),
-    (U_MINUTES, "minutter"),
-    (U_HOURS, "timer"),
-    (U_DAYS, "dager"),
-    (U_WEEKS, "uker"),
-    (U_MONTHS, "måneder"),
-    (U_YEARS, "år"),
+    (SECONDS, "sekunder"),
+    (MINUTES, "minutter"),
+    (HOURS, "timer"),
+    (DAYS, "dager"),
+    (WEEKS, "uker"),
+    (MONTHS, "måneder"),
+    (YEARS, "år"),
+]
+
+ML, CL, DL, L = 'ml', 'cl', 'dl', 'l'
+VOLUME_UNITS = [
+    (None, ''),
+    (ML, 'ml'),
+    (CL, 'cl'),
+    (DL, 'dl'),
+    (L, 'l'),
 ]
 
 
