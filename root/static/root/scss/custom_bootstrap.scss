@@ -35,29 +35,23 @@ $xxl: 1400px;
     border-color: $pink !important;
 }
 .border-dark {
+    &-60 {
+        border-color: $dark60 !important;
+    }
+    &-50 {
+        border-color: $dark50 !important;
+    }
     &-40 {
         border-color: $dark40 !important;
-    }
-    &-35 {
-        border-color: $dark35 !important;
     }
     &-30 {
         border-color: $dark30 !important;
     }
-    &-25 {
-        border-color: $dark25 !important;
-    }
     &-20 {
         border-color: $dark20 !important;
     }
-    &-15 {
-        border-color: $dark15 !important;
-    }
     &-10 {
         border-color: $dark10 !important;
-    }
-    &-05 {
-        border-color: $dark05 !important;
     }
     &-00 {
         border-color: $dark00 !important;
@@ -204,6 +198,19 @@ $xxl: 1400px;
 }
 
 $btn-dark-color: white;
+.btn-dark-50 {
+    color: $btn-dark-color !important;
+    border-color: $dark50 !important;
+    background-color: $dark50 !important;
+    
+    &:hover {
+        background-color: $dark40 !important;
+    }
+    &:focus,.focus {
+        background-color: $dark40 !important;
+        box-shadow: 0 0 0 .2rem rgba(82,88,93,.5) !important;
+    }
+}
 .btn-dark-40 {
     color: $btn-dark-color !important;
     border-color: $dark40 !important;

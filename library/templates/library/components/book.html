@@ -1,0 +1,92 @@
+
+<style media="screen">
+    .btn-change-book {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+</style>
+
+<div id="book-{{ book.id }}" class="book-component bg-dark-30 m-2 p-2 border border-dark-60 rounded {{ classes }}" style="background-color: #432 !important;">
+    
+    <div class="" style="background-image: url({{ book.image_url }});">
+        {# <div class="leftheader">book</div> #}
+        
+        <h2 class="d-inline">{{ book.title }} {% if book.author %} - {{ book.author }}{% endif %}</h2>
+        
+        <a class="btn-change-book invisible" tabindex="0" href="{% url 'library:change_book' book.id %}">
+            <i class="lni lni-pencil p-2 text-light"></i>
+        </a>
+        
+        <hr class="bg-light">
+        
+        <div class="row">
+            <div class="col-md">
+                <div class="text-center1">
+                    <i class="fas fa-book-open fa-lg"></i>
+                    {{ book.pages|default:"ikke oppgitt" }}
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="text-center1">
+                    <i class="fas fa-barcode fa-lg"></i>
+                    {{ book.isbn|default:"ikke oppgitt" }}
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="text-center1">
+                    <i class="fas fa-dice fa-lg"></i>
+                    {{ book.ranking }}
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="text-center1">
+                    <i class="fas fa-calendar-alt fa-lg"></i>
+                    {{ book.release_date|default:"ikke oppgitt" }}
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="text-center1">
+                    <i class="fas fa-flag fa-lg"></i>
+                    {{ book.nationality|default:"ikke oppgitt" }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                Forlag: {{ book.publisher|default:"ikke oppgitt" }}
+            </div>
+        </div>
+        <div class="row">
+        </div>
+        
+        {% if book.comment %}
+        <div class="mt-2">
+            <div class="">
+                <button class="btn btn-dark-20 btn-block btn-sm" type="button" data-toggle="collapse" data-target="#comment-{{book.id}}" style="background-color: #321 !important" name="button">Vis kommentarer</button>
+            </div>
+            <div class="collapse mt-2" id="comment-{{book.id}}">
+                <div class="row">
+                    <div class="col-md">
+                        <div class="">
+                            {{ book.comment | default:"" | linebreaksbr }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    
+    <div class="">
+        <div class="text-right">
+            {% for tag in book.tags.all %}
+            <span class="badge" style="background-color:{{tag.bg.as_css}}; color:{{tag.font.as_css}}">
+                {{ tag.name }}
+            </span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,32 @@
+<div class="{{ classes }}">
+    <div class="input-group">
+        
+        {% if not after %}
+        <div class="input-group-prepend">
+            {% if prefix %}
+            <div class="input-group-text {{ default_classes }} {{ prefix_classes }}">{{ prefix }}</div>
+            {% elif icon_classes %}
+            <div class="input-group-text {{ default_classes }}"><i class="{{ icon_classes }}">{{ icon_text }}</i></div>
+            {% else %}
+            <div class="input-group-text {{ default_classes }} {{ label_classes }}">{{ field.label }}</div>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        {{ field }}
+        
+        {% if after %}
+        <div class="input-group-append">
+            {% if suffix %}
+            <div class="input-group-text {{ default_classes }} {{ suffix_classes }}">{{ suffix }}</div>
+            {% elif icon_classes %}
+            <div class="input-group-text {{ default_classes }}"><i class="{{ icon_classes }}">{{ icon_text }}</i></div>
+            {% else %}
+            <div class="input-group-text {{ default_classes }} {{ label_classes }}">{{ field.label }}</div>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+    </div>
+    <div class="text-danger font-bold {{ error_classes }}">{{ field.errors }}</div>
+</div>

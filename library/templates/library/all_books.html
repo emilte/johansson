@@ -1,0 +1,196 @@
+{% extends 'root/base.html' %}
+{% load static %}
+{% load book_tags %}
+{% load root_tags %}
+
+{% block title %}Bøker{% endblock %}
+
+{% block navbar %}
+    
+{% endblock %}
+
+{% block head %}
+    <style media="screen">
+        #btn-action {
+            position: fixed;
+            right: 1vw;
+            bottom: 2vh;
+            z-index: 100;
+        }
+        .zoom-lg {
+            transition: transform .09s;
+        }
+        .zoom-lg:hover {
+            transform: scale(1.1);
+        }
+    }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+<div class="body-inner">
+    
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            
+            <div class="">
+                <form class="" method="post">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md">
+                            
+                            <div class="m-1">
+                                <div class="input-group">
+                                    {{ filter_form.search }}
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit" name="button">Søk</button>
+                                        <button class="btn btn-dark-40" type="button" data-toggle="collapse" data-target="#advanced-filter" name="button">Avansert</button>
+                                    </div>
+                                </div>
+                                <div class="text-danger font-bold">{{ filter_form.search.errors }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ show_filter }}
+                    <div class="collapse {% if show_filter %}show{% endif %}" id="advanced-filter">
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                {% input_group filter_form.ranking classes="m-1" icon_classes="fas fa-dice fa-lg" %}
+                            </div>
+                            <div class="col-md-4">
+                                <div class="m-1">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            {# <div class="input-group-text bg-dark-30 text-light border-0">{{ filter_form.date_from.label }}</div> #}
+                                            <div class="input-group-text bg-dark-30 text-light border-0"><i class="fas fa-calendar-alt"></i></div>
+                                        </div>
+                                        {{ filter_form.date_from }}
+                                        {{ filter_form.date_to }}
+                                    </div>
+                                    <div class="text-danger font-bold">{{ filter_form.date_from.errors }}</div>
+                                    <div class="text-danger font-bold">{{ filter_form.date_to.errors }}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="m-1">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            {# <div class="input-group-text bg-dark-30 text-light border-0">{{ filter_form.date_from.label }}</div> #}
+                                            <div class="input-group-text bg-dark-30 text-light border-0"><i class="fas fa-book-open"></i></div>
+                                            
+                                        </div>
+                                        {{ filter_form.pages_from }}
+                                        {{ filter_form.pages_to }}
+                                    </div>
+                                    <div class="text-danger font-bold">{{ filter_form.pages_from.errors }}</div>
+                                    <div class="text-danger font-bold">{{ filter_form.pages_to.errors }}</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        {% input_group filter_form.tags classes="m-1" icon_classes="fas fa-tags" %}
+                        <div class="row">
+                            <div class="col-md">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </form>
+            </div>
+            
+            
+            <div class="">
+    
+                {% for book in books %}
+                    <div class="row">
+                        <div class="col">
+                            {% display_book request perms book %}
+                        </div>
+                    </div>
+                {% endfor %}
+    
+            </div>
+    
+        
+        </div>
+            
+    </div>
+        
+</div>
+    
+
+
+<!-- Modal -->
+<div class="">
+    <img 
+    id="btn-action"
+    class="bg-dark-20 border border-dark-40 rounded-circle cursor-pointer zoom-lg p-2" 
+    src="{% static "library/img/plus.svg" %}" 
+    data-toggle="modal" data-target="#modal-action"
+    alt="">
+    
+    <div class="modal fade text-dark" id="modal-action" tabindex="-1" role="dialog" aria-labelledby="modal-action" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title">Handlinger</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+                            <a class="btn btn-dark-30 btn-block" tabindex="0" href="{% url 'library:add_book' %}" >
+                                + Legg til bok
+                            </a>
+                        </div>
+                        
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <a class="btn btn-dark-30 btn-block" tabindex="0" href="{% url 'library:add_tag' %}" >
+                                + Legg til tag
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+{% endblock body %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            
+            $('.book-component').hover(
+                function() {
+                    $(this).find('.btn-change-book').removeClass('invisible');
+                }, 
+                function() {
+                    $(this).find('.btn-change-book').addClass('invisible');
+                }
+        )
+        })
+    </script>
+{% endblock %}
+
+

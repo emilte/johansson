@@ -25,10 +25,11 @@
     <!-- Annoying wave-effect -->
     {# <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/css/mdb.min.css" rel="stylesheet"> #}
 
-    <!-- Lineicons -->
     <!-- Icon library -->
-    <link rel="stylesheet" href="https://cdn.lineicons.com/1.0.1/LineIcons.min.css">
+    <!-- Lineicons -->
     <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/19339791e2.js" crossorigin="anonymous"></script>
 
     <!-- Pretty Checkbox -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
@@ -213,7 +214,7 @@
             $(".select2-init").each(function(i, element) {
                 $(element).select2({
                     selectionCssClass: $(element).attr('data-selectionCssClass'),
-                    placeholder: $(element).attr('data-placeholder'),
+                    // placeholder: $(element).attr('data-placeholder'),
                 });
             });
 

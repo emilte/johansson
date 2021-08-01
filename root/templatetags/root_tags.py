@@ -14,6 +14,24 @@ register = template.Library()
 
 # https://docs.djangoproject.com/en/3.0/howto/custom-template-tags/
 
+@register.inclusion_tag('root/components/input_group.html')
+def input_group(field, after=False, **kwargs):
+    default_classes = "bg-dark-30 text-light border-0"
+    return {
+        'field': field,
+        'after': after,
+        'classes': kwargs.get('classes'),
+        'default_classes': kwargs.get('default_classes', default_classes),
+        'field_classes': kwargs.get('field_classes'),
+        'label_classes': kwargs.get('label_classes'),
+        'icon_classes': kwargs.get('icon_classes'),
+        'error_classes': kwargs.get('error_classes'),
+        'prefix': kwargs.get('prefix'),
+        'prefix_classes': kwargs.get('prefix_classes'),
+        'suffix': kwargs.get('suffix'),
+        'suffix_classes': kwargs.get('suffix_classes'),
+    }
+
 @register.simple_tag
 def get_image(model, fielname):
     if not model or not getattr(model, fieldname):

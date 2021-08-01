@@ -1,0 +1,52 @@
+
+<style media="screen">
+    .btn-change-flower {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+</style>
+
+<div id="flower-{{ flower.id }}" class="flower-component bg-dark-30 flex-fill m-2 p-2 rounded {{ classes }}">
+    
+    <div class="" style="background-image: url({{ flower.image_url }})">
+        {# <div class="leftheader">flower</div> #}
+        
+        <h2 class="d-inline">{{ flower.name }} {% if flower.name_latin %}({{ flower.name_latin }}){% endif %}</h2>
+        
+        <a class="btn-change-flower invisible" tabindex="0" href="{% url 'flowers:change_flower' flower.id %}">
+            <i class="lni lni-pencil p-2 text-light"></i>
+        </a>
+        
+        <hr class="bg-light">
+        
+        <div class="row">
+            <div class="col-md">
+                <i class="lni lni-flower"></i>
+                Levetid: {{ flower.longevity }} {{ flower.get_longevity_unit_display }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <i class="lni lni-timer"></i>
+                Vanning: {{ flower.water_freq }} {{ flower.get_water_freq_unit_display }}
+            </div>
+            <div class="col-md">
+                <i class="lni lni-drop"></i>
+                {{ flower.water_amount|floatformat:0 }} {{ flower.get_water_amount_unit_display }}
+            </div>
+        </div>
+    </div>
+    
+    <div class="">
+        <div class="float-right">
+            {% for tag in flower.tags.all %}
+            <span class="badge" style="background-color:{{tag.bg.as_css}}; color:{{tag.font.as_css}}">
+                {{ tag.name }}
+            </span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+

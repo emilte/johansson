@@ -66,7 +66,8 @@ INSTALLED_APPS = [
     # main apps
     'root',
     'accounts',
-    'flowers',
+    # 'flowers',
+    'library',
     
     # installed apps
     'compressor', # django-libsass

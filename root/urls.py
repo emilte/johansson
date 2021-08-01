@@ -10,8 +10,7 @@ from root import views as root_views
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
     path('', root_views.IndexView.as_view(), name='index'),
-    path('blomar/', include('flowers.urls')),
-    # path('blomar', include('flowers.urls', namespace='flowers')),
+    path('bibliotek/', include('library.urls')),
 ]
 
 urlpatterns += static(prefix=settings.STATIC_URL, document_root=settings.STATIC_ROOT)

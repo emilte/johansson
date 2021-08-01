@@ -16,7 +16,7 @@
         }
         
         #app-flowers {
-            background-image: url("{% static "flowers/img/bg-blue-flowers.jpg" %}");
+            background-image: url("{% static "library/img/bg-blue-flowers.jpg" %}");
         }
         #app-books {
             background-image: url("{% static "library/img/library.jpg" %}");
@@ -47,7 +47,7 @@
     <div class="row">
         
         <div class="col col-md m-2">
-            <a href="{% url 'flowers:index' %}">
+            <a href="{% url 'library:view_all_flowers' %}">
                 <div id="app-flowers" class="app app-title-wrapper border border-secondary rounded-xl zoom zoom-shine p-0">
                     <div class="space"></div>
                     <div class="app-title py-3">
@@ -58,7 +58,7 @@
         </div>
         
         <div class="col col-md m-2">
-            <a class="" href="{% url 'library:index' %}">
+            <a class="" href="{% url 'library:view_all_books' %}">
                 <div id="app-books" class="app app-title-wrapper border border-secondary rounded-xl zoom zoom-shine p-0">
                     <div class="space"></div>
                     <div class="app-title py-3">

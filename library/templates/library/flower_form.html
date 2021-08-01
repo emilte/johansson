@@ -1,0 +1,165 @@
+{% extends 'root/base.html' %}
+{% load static %}
+
+{% load root_tags %}
+{% block title %}
+    {% if form.id %}
+        Endre blomst
+    {% else %}
+        Legg til blomst
+    {% endif %}
+{% endblock title %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div class="body-inner">
+        
+        <h1 class="h1 text-center">{% if form.id %}Endre blomst {{ form.name }}{% else %}Legg til blomst{% endif %}</h1>
+        
+        <form method="post" class="mt-2" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="row justify-content-center m-0 p-0">
+                <div class="col-md-8 col-lg-8">
+                    
+                    <div class="m-1">
+                        {% for error in form.non_field_errors %}
+                            <div class="text-danger font-bold">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="row my-2">
+                        
+                        <div class="col-md-6">
+                            <div class="m-1">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-dark-30 text-light border-0">{{ form.name.label }}</div>
+                                    </div>
+                                    {{ form.name }}
+                                </div>
+                                <div class="text-danger font-bold">{{ form.name.errors }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="m-1">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-dark-30 text-light border-0">{{ form.name_latin.label }}</div>
+                                    </div>
+                                    {{ form.name_latin }}
+                                </div>
+                                <div class="text-danger font-bold">{{ form.name_latin.errors }}</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row my-2">
+                        
+                        <div class="col-md-6">
+                            <div class="m-1">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-dark-30 text-light border-0">{{ form.longevity.label }}</div>
+                                    </div>
+                                    {{ form.longevity }}
+                                    {{ form.longevity_unit }}
+                                </div>
+                                <div class="text-danger font-bold">{{ form.longevity.errors }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row my-2">
+                        
+                        <div class="col-md-6">
+                            <div class="m-1">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-dark-30 text-light border-0">{{ form.water_freq.label }}</div>
+                                    </div>
+                                    {{ form.water_freq }}
+                                    {{ form.water_freq_unit }}
+                                </div>
+                                <div class="text-danger font-bold">{{ form.water_freq.errors }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="m-1">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-dark-30 text-light border-0">{{ form.water_amount.label }}</div>
+                                    </div>
+                                    {{ form.water_amount }}
+                                    {{ form.water_amount_unit }}
+                                </div>
+                                <div class="text-danger font-bold">{{ form.water_amount.errors }}</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    {# {{ form.tags }} #}
+                    
+                    <div class="row my-2">
+                        <div class="col-md">
+                            <div class="m-1">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-dark-30 text-light border-0">{{ form.tags.label }}</div>
+                                    </div>
+                                    {{ form.tags }}
+                                </div>
+                                <div class="text-danger font-bold">{{ form.tags.errors }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row my-2">
+                        <div class="col-md">
+                            <div class="m-1">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-dark-30 text-light border-0">{{ form.image_url.label }}</div>
+                                    </div>
+                                    {{ form.image_url }}
+                                </div>
+                                <div class="text-muted small">{{ form.image_url.help_text }}</div>
+                                <div class="text-danger font-bold">{{ form.image_url.errors }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {# <div class="m-1"> #}
+                        {# {{ form.file }} #}
+                    {# </div> #}
+                    
+                    <div class="row my-3">
+                        <div class="col-md-4 m-1">
+                            <button class="btn btn-dark-20 btn-block" onclick="window.history.back();" type="button" name="cancel">Avbryt</button>
+                        </div>
+                        <div class="col-md m-1">
+                            <button class="btn btn-dark-30 btn-block" type="submit" name="save">Lagre</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+        });
+    </script>
+{% endblock scripts %}

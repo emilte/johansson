@@ -1,0 +1,99 @@
+{% extends 'root/base.html' %}
+{% load static %}
+
+{% load root_tags %}
+{% block title %}
+    {% if form.id %}
+        Endre tag
+    {% else %}
+        Legg til tag
+    {% endif %}
+{% endblock title %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div class="body-inner">
+        
+        <h1 class="h1 text-center">{% if form.id %}Endre tag {{ form.name }}{% else %}Legg til tag{% endif %}</h1>
+        
+        <form method="post" class="mt-2" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="row justify-content-center m-0 p-0">
+                <div class="col-md-8 col-lg-8">
+                    
+                    <div class="m-1">
+                        {% for error in form.non_field_errors %}
+                            <div class="text-danger font-bold">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="row">
+                        
+                        <div class="col-md">
+                            <div class="m-1">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-dark-30 text-light border-0">{{ form.name.label }}</div>
+                                    </div>
+                                    {{ form.name }}
+                                </div>
+                                <div class="text-danger font-bold">{{ form.name.errors }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md">
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        
+                        <div class="col-md">
+                            <div class="m-1">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-dark-30 text-light border-0">{{ form.bg.label }}</div>
+                                    </div>
+                                    {{ form.bg }}
+                                </div>
+                                <div class="text-danger font-bold">{{ form.bg.errors }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md">
+                            <div class="m-1">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-dark-30 text-light border-0">{{ form.font.label }}</div>
+                                    </div>
+                                    {{ form.font }}
+                                </div>
+                                <div class="text-danger font-bold">{{ form.font.errors }}</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <button class="btn btn-dark-20 btn-block mt-2 m-1" onclick="window.history.back();" name="cancel">Lagre</button>
+                        </div>
+                        <div class="col-md">
+                            <button class="btn btn-dark-30 btn-block mt-2 m-1" type="submit" name="save">Lagre</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+        });
+    </script>
+{% endblock scripts %}
