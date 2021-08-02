@@ -164,9 +164,7 @@ class BookFilterForm(forms.Form):
         })
     
     def is_empty(self):
-        fields = dict(self.data)
-        fields.pop('csrfmiddlewaretoken')
-        return all(field == [''] for field in fields.values())
+        return all(field == [''] for field in self.data.values())
         
     def filter(self, queryset):
         search = self.cleaned_data.get('search', None)

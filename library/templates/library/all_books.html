@@ -35,8 +35,7 @@
         <div class="col-md-10">
             
             <div class="">
-                <form class="" method="post">
-                    {% csrf_token %}
+                <form class="" method="get">
                     
                     <div class="row">
                         <div class="col-md">
@@ -53,7 +52,7 @@
                             </div>
                         </div>
                     </div>
-                    {{ show_filter }}
+                    
                     <div class="collapse {% if show_filter %}show{% endif %}" id="advanced-filter">
                         
                         <div class="row">
@@ -98,7 +97,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     
                 </form>
             </div>

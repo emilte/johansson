@@ -63,24 +63,16 @@ class AllBooksView(View):
     filter_form = library_forms.BookFilterForm
 
     def get(self, request, *args, **kwargs):
-        filter_form = self.filter_form()
-        books = library_models.Book.objects.all()
-        return render(request, self.template, {
-            'books': books, 
-            'filter_form': filter_form, 
-            'DOMAIN_BOOKS': library_constants.DOMAIN_BOOKS,
-        })
-    
-    def post(self, request, *args, **kwargs):
-        filter_form = self.filter_form(request.POST)
+        filter_form = self.filter_form(request.GET)
         books = library_models.Book.objects.all()
         if filter_form.is_valid():
             books = filter_form.filter(books)
         show_filter = not filter_form.is_empty()
         return render(request, self.template, {
-            'books': books,
+            'books': books, 
             'filter_form': filter_form, 
             'show_filter': show_filter,
+            'DOMAIN_BOOKS': library_constants.DOMAIN_BOOKS,
         })
     
 
