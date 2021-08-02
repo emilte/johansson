@@ -24,6 +24,7 @@ class TagForm(base_classes.CustomModelForm):
             'name',
             'bg',
             'font',
+            'domain',
             'group',
         ]
 

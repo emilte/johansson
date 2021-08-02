@@ -150,7 +150,7 @@ class BookFilterForm(forms.Form):
         self.fields['tags'].widget.attrs.update({
             'class':'select2-init form-control', # form-control lets select2 calculate correct width
             'data-selectionCssClass': 'bg-dark-10 text-light border-dark',
-            'data-width': '96%',
+            'data-width': '90%',
             'data-placeholder': 'Søk etter tags...',
         })
         

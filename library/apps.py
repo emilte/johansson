@@ -6,9 +6,10 @@ from library import constants as library_constants
 # DOMAIN_MUSIC = 'musikk'
 # DOMAIN_BOOKS = 'bøker'
 INIT_DOMAINS = [
-{'name': library_constants.DOMAIN_FLOWERS},
-# {'name': DOMAIN_MUSIC},
-# {'name': DOMAIN_BOOKS},
+    {'name': library_constants.DOMAIN_FLOWERS},
+    {'name': library_constants.DOMAIN_BOOKS},
+    # {'name': DOMAIN_MUSIC},
+    # {'name': DOMAIN_BOOKS},
 ]
 
 class LibraryConfig(AppConfig):

@@ -24,8 +24,7 @@ urlpatterns = [
     # path('musikk/album/opprett/', library_views.FlowerFormView.as_view(), name='add_book'),
     # path('musikk/album/endre/<int:book_id>/', library_views.FlowerFormView.as_view(), name='change_book'),
     
-    
-    path('tag/opprett/', root_views.TagFormView.as_view(template='library/tag_form.html', success_redirect='library:index'), name='add_tag'),
-    path('tag/endre/<int:tag_id>/', root_views.TagFormView.as_view(template='library/tag_form.html', success_redirect='library:index'), name='change_tag'),
+    path('tag/opprett/', root_views.TagFormView.as_view(template='library/tag_form.html', success_redirect='index'), name='add_tag'),
+    path('tag/endre/<int:tag_id>/', root_views.TagFormView.as_view(template='library/tag_form.html', success_redirect='index'), name='change_tag'),
 ]
 

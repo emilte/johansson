@@ -27,7 +27,7 @@ class TagGroupAdmin(base_classes.CustomBaseAdmin):
     search_fields = ['name']
 
 class TagAdmin(base_classes.CustomBaseAdmin):
-    list_display = ['name', 'creator', 'created']
+    list_display = ['name', 'full_name', 'bg', 'font', 'creator', 'created']
     ordering = ['created']
     list_filter = []
     filter_horizontal = []
