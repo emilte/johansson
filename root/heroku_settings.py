@@ -1,6 +1,5 @@
-import django_heroku
 from root.base_settings import *
-
+import django_heroku
 
 
 ALLOWED_HOSTS = ['johansson-app.herokuapp.com']

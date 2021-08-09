@@ -177,22 +177,27 @@ class BookFilterForm(forms.Form):
                 Q(nationality__icontains=search) |
                 Q(comment__icontains=search)
             ).distinct()
-            
+        
+        # pages
         pages_from = self.cleaned_data.get('pages_from')
+        if pages_from:
+            queryset = queryset.filter(pages__gte=pages_from)
         pages_to = self.cleaned_data.get('pages_to')
         if pages_from:
             queryset = queryset.filter(pages__gte=pages_from)
         if pages_to:
             queryset = queryset.filter(pages__lte=pages_to)
             
+        # date
         date_from = self.cleaned_data.get('date_from')
-        date_to = self.cleaned_data.get('date_to')
         if date_from:
             queryset = queryset.filter(release_date__gte=date_from)
+        date_to = self.cleaned_data.get('date_to')
         if date_to:
             queryset = queryset.filter(release_date__lte=date_to)
         
-        tags = self.cleaned_data.get('tags', None)
+        # tags
+        tags = self.cleaned_data.get('tags')
         if tags:
             queryset = queryset.filter(tags__in=tags)
         return queryset
