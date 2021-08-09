@@ -4,11 +4,10 @@ import os
 
 
 ALLOWED_HOSTS = ['johansson-app.herokuapp.com']
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', ALLOWED_HOSTS)
 
 # Values are set in heroku dashboard
 SECRET_KEY = os.environ['SECRET_KEY']
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = True
 
 
 #  Add configuration for static files storage using whitenoise, heroku
