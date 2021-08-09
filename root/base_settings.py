@@ -36,7 +36,6 @@ DEBUG = False
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticroot'
-print(STATIC_ROOT)
 
 # Security
 SECURE_SSL_REDIRECT = True
@@ -159,7 +158,8 @@ try:
     
     print("Loading env.py environment variables...")
 except Exception as e:
-    print("env.py was not imported")
+    pass
+    # print("env.py was not imported")
 
 # Quick fix for avoiding concurrency issues related to db access
 # https://docs.djangoproject.com/en/1.10/topics/db/transactions/#django.db.transaction.on_commit
