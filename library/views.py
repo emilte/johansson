@@ -141,7 +141,7 @@ class BooksJSON(View):
     def get(self, request):
         data = {}
         data['books'] = [book.to_dict() for book in library_models.Book.objects.all()]
-        return JsonResponse(data)
+        return JsonResponse(data, json_dumps_params={'indent':4})
 
 
 
