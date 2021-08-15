@@ -1,4 +1,6 @@
 # imports
+import json 
+
 from django.db import models
 
 from root import constants as root_constants
@@ -56,3 +58,19 @@ class Book(base_classes.CustomBaseModel):
         
     def __str__(self):
         return f"{self.title}"
+        
+    def to_dict(self):
+        return {
+            'title': self.title,
+            'author': self.author,
+            'isbn': self.isbn,
+            'ranking': self.ranking,
+            'publisher': self.publisher,
+            'release_date': self.release_date,
+            'nationality': self.nationality,
+            'pages': self.pages,
+            'comment': self.comment,
+            'image_url': self.image_url,
+            'tags': [tag.full_name() for tag in self.tags.all()],
+        }
+    

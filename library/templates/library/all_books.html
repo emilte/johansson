@@ -46,6 +46,7 @@
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="submit" name="button">Søk</button>
                                         <button class="btn btn-dark-40" type="button" data-toggle="collapse" data-target="#advanced-filter" name="button">Avansert</button>
+                                        <a class="btn btn-dark-40" target="_blank" href="{% url 'library:books_json' %}"><i class="fas fa-file-download"></i></a>
                                     </div>
                                 </div>
                                 <div class="text-danger font-bold">{{ filter_form.search.errors }}</div>

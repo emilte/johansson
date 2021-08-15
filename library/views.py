@@ -2,7 +2,7 @@
 from django.views import View
 from django.urls import reverse
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect, FileResponse
+from django.http import HttpResponse, HttpResponseRedirect, FileResponse, JsonResponse
 from django.utils import timezone
 from django.contrib import messages
 from django.db.models import Q, Avg, Count, Min, Sum
@@ -14,6 +14,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.admin.views.decorators import staff_member_required, user_passes_test
+
 
 from root import forms as root_forms
 from library import forms as library_forms
@@ -106,7 +107,7 @@ class BookFormView(View):
         
 
 perms_tag_form = [
-    login_required,
+    # login_required,
 ]
 @method_decorator(perms_tag_form, name='dispatch')
 class BookTagFormView(View):
@@ -133,5 +134,14 @@ class BookTagFormView(View):
             messages.success(request, "Tag lagret")
             return redirect(self.success_redirect)
         return render(request, self.template, {'form': form})
+        
+
+class BooksJSON(View):
+
+    def get(self, request):
+        data = {}
+        data['books'] = [book.to_dict() for book in library_models.Book.objects.all()]
+        return JsonResponse(data)
+
 
 

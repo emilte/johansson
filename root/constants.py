@@ -23,3 +23,4 @@ VOLUME_UNITS = [
 
 COLOR_RANDOM = 'tilfeldig'
 COLOR_INHERIT = 'arve'
+

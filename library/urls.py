@@ -1,6 +1,5 @@
 # imports
 from django.urls import path, include
-from django.contrib import admin
 
 from root import views as root_views
 from library import views as library_views
@@ -18,6 +17,7 @@ urlpatterns = [
     # path('bøker/bok/<int:book_id>/', library_views.BookView.as_view(), name='view_book'),
     path('bøker/bok/opprett/', library_views.BookFormView.as_view(), name='add_book'),
     path('bøker/bok/endre/<int:book_id>/', library_views.BookFormView.as_view(), name='change_book'),
+    path('bøker/json/', library_views.BooksJSON.as_view(), name='books_json'),
     
     # path('musikk/album/alle/', library_views.BookView.as_view(), name='view_all_books'),
     # path('musikk/album/<int:book_id>/', library_views.BookView.as_view(), name='view_book'),

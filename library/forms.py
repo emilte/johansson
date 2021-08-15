@@ -178,9 +178,10 @@ class BookFilterForm(forms.Form):
                 Q(comment__icontains=search)
             ).distinct()
             
-        pages_from = self.cleaned_data.get('pages_from') or 0
-        queryset = queryset.filter(pages__gte=pages_from)
+        pages_from = self.cleaned_data.get('pages_from')
         pages_to = self.cleaned_data.get('pages_to')
+        if pages_from:
+            queryset = queryset.filter(pages__gte=pages_from)
         if pages_to:
             queryset = queryset.filter(pages__lte=pages_to)
             
