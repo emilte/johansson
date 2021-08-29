@@ -2,13 +2,12 @@
 .env
 .venv
 env.*
+*.env
 
 prod_settings.py
 local_settings.py
+settings.py
 
 db.*
 *.db
 
-staticroot
-
-migrations

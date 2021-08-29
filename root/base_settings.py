@@ -158,7 +158,8 @@ try:
     
     print("Loading env.py environment variables...")
 except Exception as e:
-    print("env.py was not imported")
+    pass
+    # print("env.py was not imported")
 
 # Quick fix for avoiding concurrency issues related to db access
 # https://docs.djangoproject.com/en/1.10/topics/db/transactions/#django.db.transaction.on_commit
