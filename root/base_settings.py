@@ -65,12 +65,8 @@ INSTALLED_APPS = [
     # main apps
     'root',
     'accounts',
-    'library',
-    
-    # installed apps
-    'compressor', # django-libsass
+    'library',    
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -101,20 +97,12 @@ TEMPLATES = [
     },
 ]
 
-
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-
-    'compressor.finders.CompressorFinder', # django-libsass
 ]
 
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'), # django-libsass
-)
-
 WSGI_APPLICATION = 'root.wsgi.application'
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -134,7 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 LANGUAGE_CODE = 'nb'
@@ -151,6 +138,52 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # AUTHENTICATION_BACKENDS = {
 #     'accounts.authentication.EmailOrUsernameModelBackend',
 # }
+
+# django_debug_toolbar:
+SHOW_COLLAPSED = True
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+    'localhost',
+]
+
+INSTALLED_APPS += [
+    'debug_toolbar',
+]
+
+DEBUG_TOOLBAR_PANELS = [
+    'debug_toolbar.panels.history.HistoryPanel',
+    'debug_toolbar.panels.versions.VersionsPanel',
+    'debug_toolbar.panels.timer.TimerPanel',
+    'debug_toolbar.panels.settings.SettingsPanel',
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.sql.SQLPanel',
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    'debug_toolbar.panels.templates.TemplatesPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.logging.LoggingPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel',
+    'debug_toolbar.panels.profiling.ProfilingPanel',
+]
+# End: django_debug_toolbar ----------------------------------------------------
+
+# compressor / django-libsass:
+INSTALLED_APPS += [
+    'compressor', # django-libsass
+    
+]
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'), # django-libsass
+)
+
+STATICFILES_FINDERS += [
+    'compressor.finders.CompressorFinder', # django-libsass
+]
+# End: compressor ----------------------------------------------------
+
 
 try:
     from env import * # star is necessary
