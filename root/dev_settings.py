@@ -35,6 +35,10 @@ INTERNAL_IPS = [
     'localhost',
 ]
 
+INSTALLED_APPS += [
+    'debug_toolbar',
+]
+
 DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.history.HistoryPanel',
     'debug_toolbar.panels.versions.VersionsPanel',

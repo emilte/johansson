@@ -69,7 +69,6 @@ INSTALLED_APPS = [
     
     # installed apps
     'compressor', # django-libsass
-    'debug_toolbar',
 ]
 
 
@@ -155,7 +154,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 try:
     from env import * # star is necessary
-    
     print("Loading env.py environment variables...")
 except Exception as e:
     pass
