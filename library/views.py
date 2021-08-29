@@ -26,7 +26,7 @@ class AllFlowersView(View):
     template = "library/all_flowers.html"
 
     def get(self, request, *args, **kwargs):
-        flowers = flower_models.Flower.objects.all()
+        flowers = library_models.Flower.objects.all()
         return render(request, self.template, {'flowers': flowers})
     
 
@@ -41,7 +41,7 @@ class FlowerFormView(View):
     def get(self, request, flower_id=None):
         flower = None
         if flower_id:
-            flower = get_object_or_404(flower_models.Flower, id=flower_id)
+            flower = get_object_or_404(library_models.Flower, id=flower_id)
             
         form = self.form_class(instance=flower)
         return render(request, self.template, {'form': form})
@@ -49,7 +49,7 @@ class FlowerFormView(View):
     def post(self, request, flower_id=None):
         flower = None
         if flower_id:
-            flower = get_object_or_404(flower_models.Flower, id=flower_id)
+            flower = get_object_or_404(library_models.Flower, id=flower_id)
             
         form = self.form_class(request.POST, request.FILES, instance=flower)
         if form.is_valid():
