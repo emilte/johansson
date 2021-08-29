@@ -35,7 +35,7 @@ class Color(base_classes.CustomBaseModel):
         super().clean(*args, **kwargs)
         errors = {}
         if self.hex:
-            if not re.search('^[0-9a-f]+$', sef.hex, flags=re.IGNORECASE):
+            if not re.search('^[0-9a-f]+$', self.hex, flags=re.IGNORECASE):
                 errors['hex'] = 'Ugyldig format. Bruk 0-9 og A-F'
         if errors:
             raise ValidationError(errors)

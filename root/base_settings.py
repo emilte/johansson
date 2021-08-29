@@ -36,7 +36,6 @@ DEBUG = False
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticroot'
-print(STATIC_ROOT)
 
 # Security
 SECURE_SSL_REDIRECT = True
@@ -66,11 +65,11 @@ INSTALLED_APPS = [
     # main apps
     'root',
     'accounts',
-    # 'flowers',
     'library',
     
     # installed apps
     'compressor', # django-libsass
+    'debug_toolbar',
 ]
 
 
