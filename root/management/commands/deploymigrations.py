@@ -14,6 +14,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         management.call_command('migratezero')
         management.call_command('deletemigrations')
-        management.call_command('setupmigrations2')
+        management.call_command('setupmigrations')
         management.call_command('makemigrations')
         management.call_command('migrate')

@@ -2,31 +2,21 @@
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 from django.core import management
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model; User = get_user_model()
 import getpass
 # End: imports -----------------------------------------------------------------
 
 # Settings:
 
-User = get_user_model()
-
-EMAILS = [
-    'emil.telstad@gmail.com',
-]
-
-DEVS = [
-    ('emilte'),
-]
-
-U = [
-    {
-        'username': 'emilte',
-        'email': 'emil.telstad@gmail.com',
-        'first_name': 'Emil',
-        'last_name': 'Telstad',
-        'phone_number': 12345678,
-        'sex': User.MALE,
-    }
+users = [
+        {
+            'username': 'emilte',
+            'email': 'emil.telstad@gmail.com',
+            'first_name': 'Emil',
+            'last_name': 'Telstad',
+            'phone_number': 12345678,
+            'gender': User.MALE,
+        },
 ]
 
 PASSWORD = "Django123"
@@ -45,7 +35,7 @@ class Command(BaseCommand):
         no = ['no', 'n']
         print("== This command will:")
         print("\t 1. Set following users as superuser:")
-        for u in U:
+        for u in users:
             print(f"\t\t {u['username']}")
 
         print("\n== Are you sure? DOUBLE-CHECK that this is not production server ==")
@@ -57,7 +47,7 @@ class Command(BaseCommand):
 
     def f(self):
         # Set super devs for NICKNAMES:
-        for u in U:
+        for u in users:
             user, created = User.objects.get_or_create(username=u['username'])
             user.is_staff = True
             user.is_superuser = True
@@ -67,7 +57,7 @@ class Command(BaseCommand):
                 user.first_name = u['first_name']
                 user.last_name = u['last_name']
                 user.phone_number = u['phone_number']
-                user.sex = u['sex']
+                user.gender = u['gender']
             except Exception as e:
                 print("Non-required fields failed")
                 print(e)

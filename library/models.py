@@ -40,7 +40,7 @@ class Book(base_classes.CustomBaseModel):
     author = models.CharField(max_length=200, null=True, blank=True, verbose_name='författare')
     
     isbn = models.CharField(max_length=200, null=True, blank=True, verbose_name='isbn')
-    ranking = models.PositiveSmallIntegerField(verbose_name='betyg')
+    ranking = models.PositiveSmallIntegerField(verbose_name='betyg', null=True, blank=True)
     publisher = models.CharField(max_length=200, null=True, blank=True, verbose_name='forlag')
     release_date = models.DateField(null=True, blank=True, verbose_name='utgivningsår')
     nationality = models.CharField(max_length=200, null=True, blank=True, verbose_name='nationalitet')

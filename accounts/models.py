@@ -44,16 +44,16 @@ class User(AbstractBaseUser, PermissionsMixin):
     ]
     username = models.CharField(max_length=60, unique=True, verbose_name="brukernavn")
     email = models.EmailField(max_length=254, unique=True, null=True, blank=True)
-    first_name = models.CharField(max_length=60, null=True, blank=True, verbose_name="Fornavn")
-    last_name = models.CharField(max_length=150, null=True, blank=True, verbose_name="Etternavn")
+    first_name = models.CharField(max_length=60, null=True, blank=True, verbose_name="fornavn")
+    last_name = models.CharField(max_length=150, null=True, blank=True, verbose_name="etternavn")
     # department = models.ForeignKey('accounts.Department', on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Avdeling", related_name="users")
-    # nickname = models.CharField(max_length=150, unique=True, null=True, blank=False, verbose_name="Kallenavn")
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=None, null=True, blank=True, verbose_name="Kjønn")
+    nickname = models.CharField(max_length=150, unique=True, null=True, blank=False, verbose_name="kallenavn")
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=None, null=True, blank=True, verbose_name="kjønn")
     is_active = models.BooleanField(default=True)
-    phone_number = models.CharField(max_length=13, default=None, null=True, blank=True, verbose_name="Mobilnummer")
+    phone_number = models.CharField(max_length=13, default=None, null=True, blank=True, verbose_name="mobilnummer")
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    date_joined = models.DateTimeField(default=timezone.now, blank=True, editable=False, verbose_name="Opprettet")
+    date_joined = models.DateTimeField(default=timezone.now, blank=True, editable=False, verbose_name="opprettet")
 
     objects = auth_models.UserManager()
 
@@ -79,7 +79,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.first_name
-
 
     def serialize(self):
         jayson = {}
