@@ -10,8 +10,6 @@ django-libsass = "*"
 gunicorn = "*"
 django-heroku = "*"
 whitenoise = "*"
-
-[dev-packages]
 django-debug-toolbar = "*"
 
 [requires]
