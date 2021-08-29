@@ -58,14 +58,14 @@ class Domain(base_classes.CustomBaseModel):
     def __str__(self):
         return f"{self.name}"
         
-    def color_models_list(self):
+    def color_list(self):
         """Hierarchical list of colors from least to most significant"""
         if self.color:
             return [self.color]
         return []
     
     def color_css_list(self):
-        return [color.as_css() for color in self.color_models_list()]
+        return [color.as_css() for color in self.color_list()]
 
 
 class TagGroup(base_classes.CustomBaseModel):
@@ -88,22 +88,22 @@ class TagGroup(base_classes.CustomBaseModel):
             return f"{self.domain.name}:{self.name}"
         return f":{self.name}"
     
-    def color_models_list(self):
+    def color_list(self):
         """Hierarchical list of colors from least to most significant"""
         colors = []
         if self.domain:
-            colors.append( self.domain.color_models_list() )
+            colors.append( self.domain.color_list() )
         if self.color:
             colors.append(self.color)
         return colors
     
     def color_css_list(self):
-        return [color.as_css() for color in self.color_models_list()]
+        return [color.as_css() for color in self.color_list()]
         
         
 class Tag(base_classes.CustomBaseModel):
     name = models.CharField(max_length=200, null=False, blank=False, verbose_name='navn', help_text="En vilkårlig egenskap til en plante. (Tips: Du kan prefikse tags med kolon ':', f.eks. 'familie:fiola' )")
-    domain = models.ForeignKey('root.Domain', on_delete=models.SET_NULL, null=True, blank=True, verbose_name='tag-domene')
+    # domain = models.ForeignKey('root.Domain', on_delete=models.SET_NULL, null=True, blank=True, verbose_name='tag-domene')
     group = models.ForeignKey('root.TagGroup', on_delete=models.SET_NULL, null=True, blank=True, verbose_name='tag-gruppe')
     bg = models.ForeignKey('root.Color', on_delete=models.SET_NULL, null=True, blank=True, related_name='tag_bg', verbose_name='bakgrunnsfarge')
     font = models.ForeignKey('root.Color', on_delete=models.SET_NULL, null=True, blank=True, related_name='tag_font', verbose_name='skriftfarge')
@@ -126,16 +126,16 @@ class Tag(base_classes.CustomBaseModel):
     def get_tags_from(cls, group=None, domain=None):
         return cls.objects.filter(group=group, group__domain=domain)
     
-    def color_models_list(self):
+    def color_list(self):
         """Hierarchical list of colors from least to most significant"""
         colors = []
         if self.group:
-            colors.append( self.group.color_models_list() )
+            colors += self.group.color_list()
         if self.color:
             colors.append(self.color)
         return colors
     
     def color_css_list(self):
-        return [color.as_css() for color in self.color_models_list()]
+        return [color.as_css() for color in self.color_list()]
             
     
