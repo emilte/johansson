@@ -53,7 +53,7 @@ def divide(arg1, arg2):
 #     return round(number, decimals)
 
 @register.simple_tag
-def bg_is_dark(color):
+def is_dark(color):
     if not color:
         return True
     c_hex = f'#{color}'
@@ -72,32 +72,6 @@ def get_settings(var_name):
         {% settings_value "LANGUAGE_CODE" %}
     """
     return getattr(settings, var_name, "")
-
-@register.simple_tag(name="marked_by")
-def marked_by(interactable, user):
-    """
-    Usage:
-        {% marked_by interactable user as (type of intraction, example favorite) %}
-    """
-    if not interactable and not user:
-        raise Exception("interactable is required")
-    if not user:
-        raise Exception("user is required")
-
-    return interactable.is_marked_by(user)
-
-@register.simple_tag(name="reacted_by")
-def reacted_by(interactable, user):
-    """
-    Usage:
-        {% reacted_by interactable user as (type of intraction, example liked) %}
-    """
-    if not interactable and not user:
-        raise Exception("interactable is required")
-    if not user:
-        raise Exception("user is required")
-
-    return interactable.is_reacted_by(user)
 
 @register.filter(name='times')
 def times(number):
@@ -128,21 +102,21 @@ def smooth_timedelta(timedeltaobj):
     timetot = ""
     if secs > 86400: # 60sec * 60min * 24hrs
         days = secs // 86400
-        timetot += "{} dager".format(int(days))
+        timetot += f"{int(days)} dager"
         secs = secs - days*86400
 
     if secs > 3600:
         hrs = secs // 3600
-        timetot += " {} timer".format(int(hrs))
+        timetot += f" {int(hrs)} timer"
         secs = secs - hrs*3600
 
     if secs > 60:
         mins = secs // 60
-        timetot += " {} minutter".format(int(mins))
+        timetot += f" {int(mins)} minutter"
         secs = secs - mins*60
 
     if secs > 0:
-        timetot += " {} sekunder".format(int(secs))
+        timetot += f" {secs} sekunder"
     return timetot
     
 
