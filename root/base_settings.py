@@ -184,6 +184,16 @@ STATICFILES_FINDERS += [
 ]
 # End: compressor ----------------------------------------------------
 
+# django-import-export:
+# https://django-import-export.readthedocs.io/en/latest/installation.html
+INSTALLED_APPS += [
+    'import_export',
+]
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
+
+# End: django-import-export ----------------------------------------------------
+
 
 try:
     from env import * # star is necessary
