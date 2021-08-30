@@ -60,28 +60,5 @@ class UserAdmin(auth_admin.UserAdmin):
     filter_horizontal = ['groups', 'user_permissions']
     actions = [make_normal, make_staff, make_superuser]
 
-
-class PermissionCodeAdmin(base_classes.CustomBaseAdmin):
-    list_display = ['group', 'secret']
-    list_filter = ['group']
-    search_fields = ['group', 'secret']
-    ordering = ['-id']
-    readonly_fields = []
-    filter_horizontal = []
-    actions = []
-
-
-class DepartmentAdmin(base_classes.CustomBaseAdmin):
-    list_display = ['title', 'parent', 'member_count']
-    list_filter = ['parent']
-    search_fields = ['title']
-    ordering = []
-    readonly_fields = []
-    filter_horizontal = []
-    actions = []
-
-
 admin.site.register(User, UserAdmin)
-admin.site.register(account_models.Permission)
-admin.site.register(account_models.PermissionCode, PermissionCodeAdmin)
-admin.site.register(account_models.Department, DepartmentAdmin)
+admin.site.register(Permission)
