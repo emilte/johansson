@@ -1,0 +1,122 @@
+{% extends 'root/base.html' %}
+{% load static %}
+{% load root_tags %}
+{% load compress %}
+
+{% block title %}Index{% endblock %}
+
+{% block navbar %}
+    
+{% endblock %}
+
+{% block head %}
+    <style media="screen">
+        .app {
+            height: 45vh;
+        }
+        
+        #app-flowers {
+            background-image: url("{% static "library/img/bg-blue-flowers.jpg" %}");
+        }
+        #app-books {
+            background-image: url("{% static "library/img/library.jpg" %}");
+        }
+        
+        .space {
+            height: 55%;
+        }
+        
+        .app-title {
+            transition: background-color .4s, opacity .4s;
+            color: black;
+            justify-content: flex-end;
+            opacity: 0;
+        }
+        .app-title-wrapper:hover .app-title {
+            background-color: rgba(255,255,255, 0.2);
+            opacity: 1;
+            backdrop-filter: blur(5px);
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+<div class="body-inner">
+
+    <div class="row">
+        
+        <div class="col col-md m-2">
+            <a href="{% url 'library:view_all_flowers' %}">
+                <div id="app-flowers" class="app app-title-wrapper border border-secondary rounded-xl zoom zoom-shine p-0">
+                    <div class="space"></div>
+                    <div class="app-title py-3">
+                        <h1 class="h1 text-center">Blomsterbibliotek</h1>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="col col-md m-2">
+            <a class="" href="{% url 'library:view_all_books' %}">
+                <div id="app-books" class="app app-title-wrapper border border-secondary rounded-xl zoom zoom-shine p-0">
+                    <div class="space"></div>
+                    <div class="app-title py-3">
+                        <h1 class="h1 text-center">Bokbibliotek</h1>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+    </div>
+    
+    <div class="row">
+        
+        <div class="col col-md m-2">
+            <a class="" href="#">
+                <div id="app-3" class="app app-title-wrapper border border-secondary rounded-xl zoom zoom-shine p-0">
+                    <div class="space"></div>
+                    <div class="app-title py-3">
+                        <h1 class="h1 text-center">App-3</h1>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="col col-md m-2">
+            <a class="" href="#">
+                <div id="app-4" class="app app-title-wrapper border border-secondary rounded-xl zoom zoom-shine p-0">
+                    <div class="space"></div>
+                    <div class="app-title py-3">
+                        <h1 class="h1 text-center">App-4</h1>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+    </div>
+    
+</div>
+{% endblock body %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        
+        $(document).ready(function () {
+            
+            $(".app-title-wrapper").mouseover(function(){
+                $('app-title').animate({
+                    // paddingTop: "15px"
+                    backgroundColor
+                }, 100);
+            }).mouseout(function(){
+                $(this).animate({
+                    paddingTop: "10px"
+                }, 100);
+            });
+        })
+    </script>
+{% endblock %}
+
+
+

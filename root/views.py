@@ -20,13 +20,6 @@ from root import models as root_models
 # End: imports -----------------------------------------------------------------
 
 
-class IndexView(View):
-    template = "root/index.html"
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template)
-
-
 perms_tag_form = [
     # login_required,
 ]
@@ -42,13 +35,9 @@ class TagFormView(View):
         if tag_id:
             tag = get_object_or_404(tag_models.Tag, id=tag_id)
         
-        print(request.GET)
-        print(self.kwargs)
         domain = self.domain or request.GET.get('domain')
-        print(domain)
         if domain:
             domain = get_object_or_404(root_models.Domain, name=domain)
-        print(domain)
         form = self.form_class(instance=tag, initial={'domain': domain})
             
         return render(request, self.template, {'form': form})

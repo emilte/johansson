@@ -104,7 +104,7 @@ class TagGroup(base_classes.CustomBaseModel):
 class Tag(base_classes.CustomBaseModel):
     name = models.CharField(max_length=200, null=False, blank=False, verbose_name='navn', help_text="En vilkårlig egenskap til en plante. (Tips: Du kan prefikse tags med kolon ':', f.eks. 'familie:fiola' )")
     # domain = models.ForeignKey('root.Domain', on_delete=models.SET_NULL, null=True, blank=True, verbose_name='tag-domene')
-    group = models.ForeignKey('root.TagGroup', on_delete=models.SET_NULL, null=True, blank=True, verbose_name='tag-gruppe')
+    tag_group = models.ForeignKey('root.TagGroup', on_delete=models.SET_NULL, null=True, blank=True, verbose_name='tag-gruppe')
     bg = models.ForeignKey('root.Color', on_delete=models.SET_NULL, null=True, blank=True, related_name='tag_bg', verbose_name='bakgrunnsfarge')
     font = models.ForeignKey('root.Color', on_delete=models.SET_NULL, null=True, blank=True, related_name='tag_font', verbose_name='skriftfarge')
     
@@ -112,7 +112,7 @@ class Tag(base_classes.CustomBaseModel):
         ordering = []
         verbose_name = 'tag'
         verbose_name_plural = 'tags'
-        unique_together = ['name', 'group']
+        unique_together = ['name', 'tag_group']
         
     def __str__(self):
         return f"{self.full_name()}"

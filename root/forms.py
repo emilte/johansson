@@ -24,7 +24,7 @@ class TagForm(base_classes.CustomModelForm):
             'name',
             'bg',
             'font',
-            'group',
+            'tag_group',
         ]
 
         # https://www.jqueryscript.net/form/Bootstrap-4-Multi-Select-BsMultiSelect.html

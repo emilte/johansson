@@ -22,6 +22,14 @@ from library import models as library_models
 from library import constants as library_constants
 # End: imports -----------------------------------------------------------------
 
+
+class IndexView(View):
+    template = "library/index.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template)
+
+
 class AllFlowersView(View):
     template = "library/all_flowers.html"
 
@@ -55,7 +63,7 @@ class FlowerFormView(View):
         if form.is_valid():
             flower = form.save(user=request.user) 
             messages.success(request, "Blomst lagret")
-            return redirect('flowers:index')
+            return redirect('library:index')
         return render(request, self.template, {'form': form})
 
 
@@ -70,7 +78,7 @@ class AllBooksView(View):
             books = filter_form.filter(books)
         show_filter = not filter_form.is_empty()
         return render(request, self.template, {
-            'books': books, 
+            'books': books,
             'filter_form': filter_form, 
             'show_filter': show_filter,
             'DOMAIN_BOOKS': library_constants.DOMAIN_BOOKS,
