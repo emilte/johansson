@@ -28,9 +28,10 @@ def display_book_filter_form(request, perms, form, **kwargs):
     return {
         'request': request,
         'perms': perms, 
-        'form': form, 
+        'filter_form': form,
         'classes': kwargs.get('classes'),
-    }
+        'action': kwargs.get('action'),
+    } 
 
 # https://docs.djangoproject.com/en/3.0/howto/custom-template-tags/
 

@@ -32,94 +32,23 @@
 <div class="body-inner">
     
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md">
             
-            <div class="">
-                <form class="" method="get">
-                    
-                    <div class="row">
-                        <div class="col-md">
-                            
-                            <div class="m-1">
-                                <div class="input-group">
-                                    {{ filter_form.search }}
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit" name="button">Søk</button>
-                                        <button class="btn btn-dark-40" type="button" data-toggle="collapse" data-target="#advanced-filter" name="button">Avansert</button>
-                                        <a class="btn btn-dark-40" target="_blank" href="{% url 'library:books_json' %}"><i class="fas fa-file-download"></i></a>
-                                    </div>
-                                </div>
-                                <div class="text-danger font-bold">{{ filter_form.search.errors }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="collapse {% if show_filter %}show{% endif %}" id="advanced-filter">
-                        
-                        <div class="row">
-                            <div class="col-md-4">
-                                {% input_group filter_form.ranking classes="m-1" icon_classes="fas fa-dice fa-lg" %}
-                            </div>
-                            <div class="col-md-4">
-                                <div class="m-1">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            {# <div class="input-group-text bg-dark-30 text-light border-0">{{ filter_form.date_from.label }}</div> #}
-                                            <div class="input-group-text bg-dark-30 text-light border-0"><i class="fas fa-calendar-alt"></i></div>
-                                        </div>
-                                        {{ filter_form.date_from }}
-                                        {{ filter_form.date_to }}
-                                    </div>
-                                    <div class="text-danger font-bold">{{ filter_form.date_from.errors }}</div>
-                                    <div class="text-danger font-bold">{{ filter_form.date_to.errors }}</div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="m-1">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            {# <div class="input-group-text bg-dark-30 text-light border-0">{{ filter_form.date_from.label }}</div> #}
-                                            <div class="input-group-text bg-dark-30 text-light border-0"><i class="fas fa-book-open"></i></div>
-                                            
-                                        </div>
-                                        {{ filter_form.pages_from }}
-                                        {{ filter_form.pages_to }}
-                                    </div>
-                                    <div class="text-danger font-bold">{{ filter_form.pages_from.errors }}</div>
-                                    <div class="text-danger font-bold">{{ filter_form.pages_to.errors }}</div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        
-                        {% input_group filter_form.tags classes="m-1" icon_classes="fas fa-tags" %}
-                        <div class="row">
-                            <div class="col-md">
-                            </div>
-                        </div>
-                    </div>
-                    
-                </form>
-            </div>
-            
+            {% display_book_filter_form request perms filter_form %}
             
             <div class="">
     
                 {% for book in books %}
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md">
                             {% display_book request perms book %}
                         </div>
                     </div>
                 {% endfor %}
     
             </div>
-    
-        
         </div>
-            
     </div>
-        
 </div>
     
 

@@ -118,19 +118,19 @@ class Tag(base_classes.CustomBaseModel):
         return f"{self.full_name()}"
         
     def full_name(self):
-        if self.group:
-            return f"{self.group.full_name()}:{self.name}"
+        if self.tag_group:
+            return f"{self.tag_group.full_name()}:{self.name}"
         return f"::{self.name}"
     
     @classmethod
-    def get_tags_from(cls, group=None, domain=None):
-        return cls.objects.filter(group=group, group__domain=domain)
+    def get_tags_from(cls, tag_group=None, domain=None):
+        return cls.objects.filter(tag_group=tag_group, tag_group__domain=domain)
     
     def color_list(self):
         """Hierarchical list of colors from least to most significant"""
         colors = []
-        if self.group:
-            colors += self.group.color_list()
+        if self.tag_group:
+            colors += self.tag_group.color_list()
         if self.color:
             colors.append(self.color)
         return colors

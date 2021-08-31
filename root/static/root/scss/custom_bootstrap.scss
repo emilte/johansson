@@ -34,6 +34,18 @@ $xxl: 1400px;
 .border-pink {
     border-color: $pink !important;
 }
+.border-brown {
+    border-color: $brown !important;
+    &-light {
+        border-color: $brown-light !important;
+    }
+    &-dark {
+        border-color: $brown-dark !important;
+    }
+    &-darker {
+        border-color: $brown-darker !important;
+    }
+}
 .border-dark {
     &-60 {
         border-color: $dark60 !important;
@@ -75,6 +87,19 @@ $xxl: 1400px;
 }
 .bg-pink {
     background-color: $pink !important;
+}
+
+.bg-brown {
+    background-color: $brown !important;
+    &-light {
+        background-color: $brown-light !important;
+    }
+    &-dark {
+        background-color: $brown-dark !important;
+    }
+    &-darker {
+        background-color: $brown-darker !important;
+    }
 }
 .bg-blur {
     // background-color: rgba(0,0,0,0) !important;
@@ -181,7 +206,7 @@ $xxl: 1400px;
 // btn
 .btn-pink {
     background-color: $pink !important;
-    color:white !important;
+    color: $light !important;
     &:hover {
         background-color: $pink-light !important;
         color: black !important;
@@ -194,6 +219,41 @@ $xxl: 1400px;
     }
     &.active {
          background-color: $pink-dark !important;
+    }
+}
+
+.btn-brown {
+    background-color: $brown !important;
+    color: $light !important;
+    &:hover {
+        background-color: $brown-light !important;
+        // color: black !important;
+    }
+    &:active {
+        background-color: $brown-dark !important;
+    }
+    &:focus {
+        background-color: $brown-dark !important;
+    }
+    &.active {
+         background-color: $brown-dark !important;
+    }
+}
+
+.btn-brown-dark {
+    background-color: $brown-dark !important;
+    color: $light !important;
+    &:hover {
+        background-color: $brown !important;
+    }
+    &:active {
+        background-color: $brown-darker !important;
+    }
+    &:focus {
+        background-color: $brown-darker !important;
+    }
+    &.active {
+         background-color: $brown-darker !important;
     }
 }
 
@@ -398,10 +458,6 @@ $btn-dark-color: white;
 .bottom {
     position: absolute;
     bottom: 0px;
-}
-.bottom-half-under {
-    position: absolute;
-    bottom: -16px;
 }
 
 .reverse-image-fluid {
