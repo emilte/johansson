@@ -45,6 +45,9 @@ $xxl: 1400px;
     &-darker {
         border-color: $brown-darker !important;
     }
+    &-darkest {
+        border-color: $brown-darkest !important;
+    }
 }
 .border-dark {
     &-60 {
@@ -99,6 +102,9 @@ $xxl: 1400px;
     }
     &-darker {
         background-color: $brown-darker !important;
+    }
+    &-darkest {
+        background-color: $brown-darkest !important;
     }
 }
 .bg-blur {
@@ -421,6 +427,7 @@ $btn-dark-color: white;
 
 // grid
 
+// select row and col-*
 .row, [class^="col"] {
     margin: 0;
     padding: 0;

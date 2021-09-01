@@ -130,6 +130,7 @@ class BookFilterForm(forms.Form):
         
         self.fields['search'].widget.attrs.update({
             'placeholder': "Søk etter f.eks. titel, forfatter, nationalitet",
+            'autofocus': True,
         })
         self.fields['ranking'].widget.attrs.update({
             'placeholder': 'Betyg',

@@ -26,9 +26,9 @@
             
             {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'admin:index' %}" role="button">
+                    <a class="nav-link" href="{% url 'admin:index' %}" role="button" data-toggle="tooltip" data-placement="bottom" title="Admin">
                         <i class="fas fa-shield-alt"></i>
-                        Admin
+                        {# Admin #}
                     </a>
                 </li>
                 <li class="nav-item">
@@ -38,9 +38,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'admin:logout' %}">
+                    <a class="nav-link" href="{% url 'admin:logout' %}" data-toggle="tooltip" data-placement="bottom" title="Logg ut">
                         <i class="far fa-times-circle" ></i>
-                        Logg ut
+                        {# Logg ut #}
                     </a>
                 </li>
             {% else %}

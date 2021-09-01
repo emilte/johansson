@@ -70,13 +70,13 @@
     {% endblock %}
 </head>
 
-<body>
-
-    {% block navbar %}
-        {% include "library/components/navbar.html" %}
-    {% endblock %}
+<body class="{% block body-classes %}{% endblock %}">
 
     <div id="body-outer" class="container-fluid p-1">
+        
+        {% block navbar %}
+            {% include "library/components/navbar.html" %}
+        {% endblock %}
 
         <!-- Django messages -->
         <!-- https://docs.djangoproject.com/en/3.1/ref/contrib/messages/ -->

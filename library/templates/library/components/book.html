@@ -5,14 +5,27 @@
         top: 0;
         right: 0;
     }
+    .img-book-cover {
+        background-image: ;
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: contain;
+        /* height: 100%; */
+        /* max-height: 150px; */
+    }
 </style>
 
 <div id="book-{{ book.id }}" class="book-component bg-brown-dark m-2 p-2 border border-brown-dark rounded {{ classes }}">
         
         <div class="row">
             
+            <!--
             <div class="col-1 mx-1 text-center">
                 <img height="150" src="{{ book.image_url }}" alt="Cover of {{book.title}}">
+            </div>
+        -->
+            <div class="col-1 img-book-cover" style="background-image: url({{ book.image_url }})">
+                <!-- Book image -->
             </div>
             
             <div class="col-md mx-1">
@@ -28,37 +41,37 @@
                 <hr class="bg-light">
                 
                 <div class="row">
-                    <div class="col-md">
+                    <div class="col-md my-1">
                         <span class="" data-toggle="tooltip" data-placement="top" title="Antall sider">
                             <i class="fas fa-book-open fa-lg"></i>
                             {{ book.pages|default:"ikke oppgitt" }}
                         </span>
                     </div>
-                    <div class="col-md">
+                    <div class="col-md my-1 text-nowrap">
                         <span class="" data-toggle="tooltip" data-placement="top" title="ISBN-nummer">
                             <i class="fas fa-barcode fa-lg"></i>
                             {{ book.isbn|default:"ikke oppgitt" }}
                         </span>
                     </div>
-                    <div class="col-md">
+                    <div class="col-md my-1">
                         <span class="" data-toggle="tooltip" data-placement="top" title="Ranking">
                             <i class="fas fa-dice fa-lg"></i>
                             {{ book.ranking | default:"ikke oppgitt" }}
                         </span>
                     </div>
-                    <div class="col-md">
+                    <div class="col-md my-1">
                         <span class="" data-toggle="tooltip" data-placement="top" title="Utgivelsesår">
                             <i class="fas fa-calendar-alt fa-lg"></i>
                             {{ book.release_date | date:"Y" | default:"ikke oppgitt" }}
                         </span>
                     </div>
-                    <div class="col-md">
+                    <div class="col-md my-1">
                         <span class="" data-toggle="tooltip" data-placement="top" title="Nationalitet">
                             <i class="fas fa-flag fa-lg"></i>
                             {{ book.nationality|default:"ikke oppgitt" }}
                         </span>
                     </div>
-                    <div class="col-md">
+                    <div class="col-md my-1">
                         <span class="" data-toggle="tooltip" data-placement="top" title="Forlag">
                             <i class="far fa-building"></i>
                             {{ book.publisher|default:"ikke oppgitt" }}
@@ -67,12 +80,12 @@
                 </div>
                 
                 {% if book.comment %}
-                    <div class="mt-5">
+                    <div class="mt-4">
                         <div class="">
                             <button class="btn btn-brown btn-block btn-sm" type="button" data-toggle="collapse" data-target="#comment-{{book.id}}" name="button">Vis kommentarer</button>
                         </div>
                         <div class="collapse" id="comment-{{book.id}}">
-                            <div class="row bg-brown-light rounded-bottom-xl p-4">
+                            <div class="row bg-brown rounded-bottom-xl p-4">
                                 <div class="col-md">
                                     <div class="">
                                         {{ book.comment | default:"" | linebreaksbr }}
@@ -82,23 +95,25 @@
                         </div>
                     </div>
                 {% endif %}
+                
+                {# onclick="location.href = {{request.path}}?tags={{tag.id}};" #}
+                <div class="">
+                    <div class="text-right">
+                        {% for tag in book.tags.all %}
+                        <span class="badge" 
+                            data-toggle="tooltip" data-placement="top" title="{{tag.full_name}}" 
+                            style="background-color:{{tag.bg.as_css}}; color:{{tag.font.as_css}}"
+                            >
+                            {{ tag.name }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                </div>
+                
             </div>
-            </div>
-        
-    
-    {# onclick="location.href = {{request.path}}?tags={{tag.id}};" #}
-    <div class="">
-        <div class="text-right">
-            {% for tag in book.tags.all %}
-            <span class="badge" 
-                data-toggle="tooltip" data-placement="top" title="{{tag.full_name}}" 
-                style="background-color:{{tag.bg.as_css}}; color:{{tag.font.as_css}}"
-                >
-                {{ tag.name }}
-            </span>
-            {% endfor %}
         </div>
-    </div>
+        
+
 </div>
 
 
