@@ -1,2 +1,3 @@
-# heroku-config
+# heroku-config:
+# heroku will automatically find a python version, but this file provides more flexibility
 python-3.8.11
