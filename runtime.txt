@@ -1,2 +1,2 @@
 # heroku-config
-python-3.8.12
+python-3.8.11
