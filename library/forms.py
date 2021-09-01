@@ -107,7 +107,6 @@ class BookForm(base_classes.CustomModelForm):
 
 class BookFilterForm(forms.Form):
     search = forms.CharField(required=False, max_length=100, label="Søk")
-    # TODO: test om denne blir evaluert bare en gang?
     ranking = forms.IntegerField(required=False, label="betyg")
     date_from = forms.DateField(required=False, label="dato (fra)")
     date_to = forms.DateField(required=False, label="dato (til)")
@@ -115,17 +114,19 @@ class BookFilterForm(forms.Form):
     pages_from = forms.IntegerField(required=False, label="antal sidor (fra)")
     pages_to = forms.IntegerField(required=False, label="antal sidor (til)")
     
-    tags = forms.ModelMultipleChoiceField(required=False, queryset=root_models.Tag.objects.all(), label="Tags")
+    tags = forms.ModelMultipleChoiceField(required=False, queryset=None, label="Tags")
     
     required_css_class = 'required font-bold'
     field_classes = 'form-control bg-dark-10 text-light border-dark'
-
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs.update({'class': self.field_classes})
-            
-        # self.fields['file'].widget.attrs.update({'onchange': 'readURL(this);'})
+        
+        book_domain, created = root_models.Domain.objects.get_or_create(name=library_constants.DOMAIN_BOOKS)
+        
+        self.fields['tags'].queryset = book_domain.get_tags()
         
         self.fields['search'].widget.attrs.update({
             'placeholder': "Søk etter f.eks. titel, forfatter, nationalitet",
@@ -164,7 +165,7 @@ class BookFilterForm(forms.Form):
         })
     
     def is_empty(self):
-        return all(field == [''] for field in self.data.values())
+        return all(field == '' for field in self.data.values())
         
     def filter(self, queryset):
         search = self.cleaned_data.get('search', None)
@@ -187,6 +188,11 @@ class BookFilterForm(forms.Form):
             queryset = queryset.filter(pages__gte=pages_from)
         if pages_to:
             queryset = queryset.filter(pages__lte=pages_to)
+        
+        # ranking
+        ranking = self.cleaned_data.get('ranking')
+        if ranking:
+            queryset = queryset.filter(ranking=ranking)
             
         # date
         date_from = self.cleaned_data.get('date_from')

@@ -28,9 +28,9 @@ ENV = BASE
 # from django.contrib.auth import get_user_model; User = get_user_model()
 AUTH_USER_MODEL = "accounts.User"
 
-# LOGIN_URL = ''
-# LOGIN_REDIRECT_URL = ''
-# LOGOUT_REDIRECT_URL = ''
+LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
 
 DEBUG = False
 
@@ -77,6 +77,7 @@ MIDDLEWARE = [
    # 'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'root.urls'

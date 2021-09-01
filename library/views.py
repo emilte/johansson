@@ -74,13 +74,13 @@ class AllBooksView(View):
     def get(self, request, *args, **kwargs):
         filter_form = self.filter_form(request.GET)
         books = library_models.Book.objects.all()
+        
         if filter_form.is_valid():
             books = filter_form.filter(books)
-        show_filter = not filter_form.is_empty()
+            
         return render(request, self.template, {
             'books': books,
             'filter_form': filter_form, 
-            'show_filter': show_filter,
             'DOMAIN_BOOKS': library_constants.DOMAIN_BOOKS,
         })
     

@@ -24,11 +24,11 @@ def display_book(request, perms, book, **kwargs):
     }
 
 @register.inclusion_tag('library/components/book_filter_form.html')
-def display_book_filter_form(request, perms, form, **kwargs):
+def display_book_filter(request, perms, form, **kwargs):
     return {
         'request': request,
         'perms': perms, 
-        'filter_form': form,
+        'form': form,
         'classes': kwargs.get('classes'),
         'action': kwargs.get('action'),
     } 

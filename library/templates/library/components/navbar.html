@@ -1,0 +1,63 @@
+
+<style media="screen">
+    #nav {
+        box-shadow: 0 8px 10px -10px rgba(255,255,255,0.4);
+        -webkit-box-shadow: 0 8px 10px -10px rgba(255,255,255,0.4);
+    }
+</style>
+
+<div class="my-5">
+    {# used to move content under navbar #}
+</div>
+
+<!-- Navbar -->
+<nav id="nav" class="navbar navbar-expand-md navbar-dark fixed-top m-0 p-1">
+
+    <a class="navbar-brand ml-2" href="{% url 'library:index' %}">
+        <i class="fas fa-home"></i>
+        <span class="d-none d-sm-none d-md-inline">
+            Johanssons'
+        </span>
+    </a>
+
+
+    <div class="collapse navbar-collapse mr-auto" id="navbar">
+        <ul class="navbar-nav ml-auto ml-3">
+            
+            {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'admin:index' %}" role="button">
+                        <i class="fas fa-shield-alt"></i>
+                        Admin
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:profile' %}" role="button">
+                        <i class="far fa-user"></i>
+                        {{ request.user }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'admin:logout' %}">
+                        <i class="far fa-times-circle" ></i>
+                        Logg ut
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:login' %}" role="button">
+                        Logg inn
+                        <i class="fas fa-sign-in-alt"></i>
+                    </a>
+                </li>
+            {% endif %}
+
+        </ul>
+        
+    </div>
+</nav> <!-- End: navbar -->
+
+
+
+
+

@@ -1,7 +1,6 @@
 # imports
 import math
 from openpyxl import Workbook
-from operator import itemgetter
 
 from django.views import View
 from django.urls import reverse
@@ -25,14 +24,8 @@ from accounts import models as account_models
 
 # End: imports -----------------------------------------------------------------
 
-def getIndexOfTuple(tuplelist, index, value):
-    for i, tuple in enumerate(tuplelist):
-        if tuple[index] == value:
-            return i
-    return None
-
 profile_dec = [
-    login_required,
+
 ]
 
 @method_decorator(profile_dec, name='dispatch')
@@ -92,6 +85,8 @@ class SignUpView(View):
             return render(request, self.template, {'form': form})
 
 
+
+
 @method_decorator(profile_dec, name='dispatch')
 class DeleteUserView(View):
 
@@ -122,8 +117,6 @@ class LoginView(View):
 
         return render(request, self.template, {'error': error})
 
-
-
 @method_decorator(profile_dec, name='dispatch')
 class LogoutView(View):
 
@@ -146,73 +139,6 @@ class ChangePasswordView(View):
         form = self.form_class(data=request.POST, request=request)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  # Important!
+            update_session_auth_hash(request, user) # Important!
             return redirect("accounts:profile")
         return render(request, self.template, {'form': form})
-
-
-
-export_perms = [
-    login_required,
-    user_passes_test(lambda u: u.is_superuser, login_url="forbidden")
-]
-
-@method_decorator(export_perms, name='dispatch')
-class UsersXLSX(View):
-
-    def get(self, request, *args, **kwargs):
-        filename = "users.xlsx"
-
-        users = User.objects.all()
-
-        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        response['Content-Disposition'] = f'attachment; filename={filename}-{timezone.now()}.xlsx'
-
-        workbook = Workbook()
-
-        # Get active worksheet/tab
-        worksheet = workbook.active
-        worksheet.title = 'Users'
-
-        # Define the titles for columns
-        columns = [
-            'ID',
-            'email',
-            'nickname',
-            'first_name',
-            'last_name',
-            'department',
-            'staff',
-            'superuser',
-        ]
-        row_num = 1
-
-        # Assign the titles for each cell of the header
-        for col_num, column_title in enumerate(columns, 1):
-            cell = worksheet.cell(row=row_num, column=col_num)
-            cell.value = column_title
-
-        # Iterate through all movies
-        for user in users:
-            row_num += 1
-
-            # Define the data for each cell in the row
-            row = [
-                user.id,
-                user.email,
-                user.nickname,
-                user.first_name,
-                user.last_name,
-                user.department,
-                user.is_staff,
-                user.is_superuser,
-            ]
-
-            # Assign the data for each cell of the row
-            for col_num, cell_value in enumerate(row, 1):
-                cell = worksheet.cell(row=row_num, column=col_num)
-                cell.value = cell_value
-
-        workbook.save(response)
-
-        return response

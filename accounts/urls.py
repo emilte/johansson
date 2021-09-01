@@ -13,11 +13,12 @@ app_name = 'accounts' # Necessary for url naming. eg {% url 'accounts:signin' %}
 urlpatterns = [
     path('signup/', account_views.SignUpView.as_view(), name='signup'),
     # path('login/', account_views.LoginView.as_view(), name='login'),
-    path('login/', auth_account_views.LoginView.as_view(template_name="accounts/login2.html", form_class=account_forms.CustomAuthenticationForm), name='login'),
-    path('logout/', account_views.LogoutView.as_view(), name='logout'),
+    # path('logout/', account_views.LogoutView.as_view(), name='logout'),
+    path('login/', auth_views.LoginView.as_view(template_name="accounts/login2.html", form_class=account_forms.CustomAuthenticationForm), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('change_password/', account_views.ChangePasswordView.as_view(), name='change_password'),
-    path('profile/edit/', account_views.EditProfileView.as_view(), name='edit_profile'),
     path('profile/', account_views.ProfileView.as_view(), name='profile'),
+    path('profile/edit/', account_views.EditProfileView.as_view(), name='edit_profile'),
 
     #path('delete_user/', views.DeleteUserView.as_view(), name="delete_user"),
 

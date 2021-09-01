@@ -4,6 +4,7 @@ from django.db.models import Q
 from django.contrib.auth import get_user_model; User = get_user_model()
 from django.forms.widgets import PasswordInput, TextInput
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm, PasswordChangeForm
+from django.contrib.auth import admin as auth_admin
 
 from accounts import models as account_models
 
@@ -30,7 +31,7 @@ class SignUpForm(UserCreationForm):
         ]
 
     def __init__(self, *args, **kwargs):
-        super(type(self), self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs.update({'class': 'form-control'})
 
@@ -57,7 +58,7 @@ class EditUserForm(forms.ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        super(type(self), self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs.update({'class': 'form-control'})
 
@@ -70,7 +71,7 @@ class CustomAuthenticationForm(AuthenticationForm): # Not currently in use. Can 
     # username = forms.IntegerField(min_value=0, widget=forms.NumberInput(attrs={'autofocus': True}))
 
     def __init__(self, *args, **kwargs):
-        super(type(self), self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs.update({'class': 'form-control'})
 

@@ -3,14 +3,11 @@ from django.apps import AppConfig
 from library import constants as library_constants
 # End: imports -----------------------------------------------------------------
 
-# DOMAIN_MUSIC = 'musikk'
-# DOMAIN_BOOKS = 'bøker'
 INIT_DOMAINS = [
     {'name': library_constants.DOMAIN_FLOWERS},
     {'name': library_constants.DOMAIN_BOOKS},
-    # {'name': DOMAIN_MUSIC},
-    # {'name': DOMAIN_BOOKS},
 ]
+
 
 class LibraryConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
@@ -20,12 +17,16 @@ class LibraryConfig(AppConfig):
         from library import signals
         
         # init instances
-        try:
-            from root import models as root_models
-            from library import models as flower_models
+        from root import models as root_models
+        
+        for domain in INIT_DOMAINS:
+            try:
+                d, created = root_models.Domain.objects.get_or_create(name=domain['name'])
+                root_models.TagGroup.objects.get_or_create(name='', domain=d)
+            except Exception as e:
+                print(f"[{__file__}]: {e}")
+        
             
-            for domain in INIT_DOMAINS:
-                root_models.Domain.objects.get_or_create(name=domain['name'])
-        except Exception as e:
-            print(f"[{__file__}]: {e}")
+            
+            
             

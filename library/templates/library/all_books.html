@@ -6,23 +6,12 @@
 {% block title %}Bøker{% endblock %}
 
 {% block navbar %}
-    
+    {% include "library/components/navbar.html" %}
 {% endblock %}
 
 {% block head %}
     <style media="screen">
-        #btn-action {
-            position: fixed;
-            right: 1vw;
-            bottom: 2vh;
-            z-index: 100;
-        }
-        .zoom-lg {
-            transition: transform .09s;
-        }
-        .zoom-lg:hover {
-            transform: scale(1.1);
-        }
+        
     }
     </style>
 {% endblock %}
@@ -34,7 +23,7 @@
     <div class="row justify-content-center">
         <div class="col-md">
             
-            {% display_book_filter_form request perms filter_form %}
+            {% display_book_filter request perms filter_form %}
             
             <div class="">
     
@@ -51,63 +40,8 @@
     </div>
 </div>
     
+{% include "library/components/btn_action.html" %}
 
-
-<!-- Modal -->
-<div class="">
-    <img 
-    id="btn-action"
-    class="bg-dark-20 border border-dark-40 rounded-circle cursor-pointer zoom-lg p-2" 
-    src="{% static "library/img/plus.svg" %}" 
-    data-toggle="modal" data-target="#modal-action"
-    alt="">
-    
-    <div class="modal fade text-dark" id="modal-action" tabindex="-1" role="dialog" aria-labelledby="modal-action" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                
-                <div class="modal-header">
-                    <h5 class="modal-title">Handlinger</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                
-                <div class="modal-body">
-                    <div class="row">
-                        
-                        <div class="col-md-6">
-                            <a class="btn btn-dark-30 btn-block" tabindex="0" href="{% url 'library:add_book' %}" >
-                                + Legg til bok
-                            </a>
-                        </div>
-                        
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <a class="btn btn-dark-30 btn-block" tabindex="0" href="{% url 'library:add_tag' %}" >
-                                + Legg til tag
-                            </a>
-                        </div>
-                        <div class="col-md-6">
-                            <a class="btn btn-dark-30 btn-block" tabindex="0" href="{% url 'library:add_tag' %}?domain={{DOMAIN_BOOKS}}" >
-                                + Legg til bok-tag
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-    
-    
-</div>
 {% endblock body %}
 
 {% block scripts %}
@@ -115,13 +49,13 @@
         $(document).ready(function() {
             
             $('.book-component').hover(
-                function() {
+                function() { // over
                     $(this).find('.btn-change-book').removeClass('invisible');
                 }, 
-                function() {
+                function() { // out
                     $(this).find('.btn-change-book').addClass('invisible');
                 }
-        )
+            )
         })
     </script>
 {% endblock %}
